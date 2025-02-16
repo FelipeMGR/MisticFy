@@ -17,3 +17,79 @@ build_property.SupportLocalizedComponentNames =
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = C:\Users\felip\OneDrive\Documents\Projetos\MisticFy
 build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/felip/OneDrive/Documents/Projetos/MisticFy/SpotifyAPI-NET/SpotifyAPI.Web.Examples/Example.ASPBlazor/App.razor]
+build_metadata.AdditionalFiles.TargetPath = U3BvdGlmeUFQSS1ORVRcU3BvdGlmeUFQSS5XZWIuRXhhbXBsZXNcRXhhbXBsZS5BU1BCbGF6b3JcQXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felip/OneDrive/Documents/Projetos/MisticFy/SpotifyAPI-NET/SpotifyAPI.Web.Examples/Example.ASPBlazor/Pages/Error.razor]
+build_metadata.AdditionalFiles.TargetPath = U3BvdGlmeUFQSS1ORVRcU3BvdGlmeUFQSS5XZWIuRXhhbXBsZXNcRXhhbXBsZS5BU1BCbGF6b3JcUGFnZXNcRXJyb3IucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felip/OneDrive/Documents/Projetos/MisticFy/SpotifyAPI-NET/SpotifyAPI.Web.Examples/Example.ASPBlazor/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = U3BvdGlmeUFQSS1ORVRcU3BvdGlmeUFQSS5XZWIuRXhhbXBsZXNcRXhhbXBsZS5BU1BCbGF6b3JcUGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felip/OneDrive/Documents/Projetos/MisticFy/SpotifyAPI-NET/SpotifyAPI.Web.Examples/Example.ASPBlazor/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U3BvdGlmeUFQSS1ORVRcU3BvdGlmeUFQSS5XZWIuRXhhbXBsZXNcRXhhbXBsZS5BU1BCbGF6b3JcU2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felip/OneDrive/Documents/Projetos/MisticFy/SpotifyAPI-NET/SpotifyAPI.Web.Examples/Example.ASPBlazor/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U3BvdGlmeUFQSS1ORVRcU3BvdGlmeUFQSS5XZWIuRXhhbXBsZXNcRXhhbXBsZS5BU1BCbGF6b3JcU2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felip/OneDrive/Documents/Projetos/MisticFy/SpotifyAPI-NET/SpotifyAPI.Web.Examples/Example.ASPBlazor/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U3BvdGlmeUFQSS1ORVRcU3BvdGlmeUFQSS5XZWIuRXhhbXBsZXNcRXhhbXBsZS5BU1BCbGF6b3JcU2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felip/OneDrive/Documents/Projetos/MisticFy/SpotifyAPI-NET/SpotifyAPI.Web.Examples/Example.ASPBlazor/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = U3BvdGlmeUFQSS1ORVRcU3BvdGlmeUFQSS5XZWIuRXhhbXBsZXNcRXhhbXBsZS5BU1BCbGF6b3JcX0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felip/OneDrive/Documents/Projetos/MisticFy/SpotifyAPI-NET/SpotifyAPI.Web.Examples/Example.BlazorWASM/App.razor]
+build_metadata.AdditionalFiles.TargetPath = U3BvdGlmeUFQSS1ORVRcU3BvdGlmeUFQSS5XZWIuRXhhbXBsZXNcRXhhbXBsZS5CbGF6b3JXQVNNXEFwcC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felip/OneDrive/Documents/Projetos/MisticFy/SpotifyAPI-NET/SpotifyAPI.Web.Examples/Example.BlazorWASM/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = U3BvdGlmeUFQSS1ORVRcU3BvdGlmeUFQSS5XZWIuRXhhbXBsZXNcRXhhbXBsZS5CbGF6b3JXQVNNXFBhZ2VzXEluZGV4LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felip/OneDrive/Documents/Projetos/MisticFy/SpotifyAPI-NET/SpotifyAPI.Web.Examples/Example.BlazorWASM/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U3BvdGlmeUFQSS1ORVRcU3BvdGlmeUFQSS5XZWIuRXhhbXBsZXNcRXhhbXBsZS5CbGF6b3JXQVNNXFNoYXJlZFxNYWluTGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felip/OneDrive/Documents/Projetos/MisticFy/SpotifyAPI-NET/SpotifyAPI.Web.Examples/Example.BlazorWASM/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U3BvdGlmeUFQSS1ORVRcU3BvdGlmeUFQSS5XZWIuRXhhbXBsZXNcRXhhbXBsZS5CbGF6b3JXQVNNXFNoYXJlZFxOYXZNZW51LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felip/OneDrive/Documents/Projetos/MisticFy/SpotifyAPI-NET/SpotifyAPI.Web.Examples/Example.BlazorWASM/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = U3BvdGlmeUFQSS1ORVRcU3BvdGlmeUFQSS5XZWIuRXhhbXBsZXNcRXhhbXBsZS5CbGF6b3JXQVNNXF9JbXBvcnRzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felip/OneDrive/Documents/Projetos/MisticFy/SpotifyAPI-NET/SpotifyAPI.Web.Examples/Example.ASPBlazor/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = U3BvdGlmeUFQSS1ORVRcU3BvdGlmeUFQSS5XZWIuRXhhbXBsZXNcRXhhbXBsZS5BU1BCbGF6b3JcUGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felip/OneDrive/Documents/Projetos/MisticFy/SpotifyAPI-NET/SpotifyAPI.Web.Examples/Example.ASP/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = U3BvdGlmeUFQSS1ORVRcU3BvdGlmeUFQSS5XZWIuRXhhbXBsZXNcRXhhbXBsZS5BU1BcUGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felip/OneDrive/Documents/Projetos/MisticFy/SpotifyAPI-NET/SpotifyAPI.Web.Examples/Example.ASP/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = U3BvdGlmeUFQSS1ORVRcU3BvdGlmeUFQSS5XZWIuRXhhbXBsZXNcRXhhbXBsZS5BU1BcUGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felip/OneDrive/Documents/Projetos/MisticFy/SpotifyAPI-NET/SpotifyAPI.Web.Examples/Example.ASP/Pages/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = U3BvdGlmeUFQSS1ORVRcU3BvdGlmeUFQSS5XZWIuRXhhbXBsZXNcRXhhbXBsZS5BU1BcUGFnZXNcUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felip/OneDrive/Documents/Projetos/MisticFy/SpotifyAPI-NET/SpotifyAPI.Web.Examples/Example.ASP/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = U3BvdGlmeUFQSS1ORVRcU3BvdGlmeUFQSS5XZWIuRXhhbXBsZXNcRXhhbXBsZS5BU1BcUGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felip/OneDrive/Documents/Projetos/MisticFy/SpotifyAPI-NET/SpotifyAPI.Web.Examples/Example.ASP/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = U3BvdGlmeUFQSS1ORVRcU3BvdGlmeUFQSS5XZWIuRXhhbXBsZXNcRXhhbXBsZS5BU1BcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felip/OneDrive/Documents/Projetos/MisticFy/SpotifyAPI-NET/SpotifyAPI.Web.Examples/Example.ASP/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = U3BvdGlmeUFQSS1ORVRcU3BvdGlmeUFQSS5XZWIuRXhhbXBsZXNcRXhhbXBsZS5BU1BcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

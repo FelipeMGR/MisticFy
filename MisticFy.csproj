@@ -7,7 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="SpotifyAPI.Web" Version="7.2.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
+
+<ItemGroup>
+  <Reference Include="SpotifyAPI.Web">
+    <HintPath>..\Dlls\SpotifyAPI.Web.dll</HintPath>
+  </Reference>
+</ItemGroup>
 
 </Project>
