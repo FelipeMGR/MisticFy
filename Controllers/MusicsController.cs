@@ -4,13 +4,17 @@ using SpotifyAPI.Web;
 
 namespace MisticFy.Controllers
 {
-    public class MusicsController : BaseApiController
+    [Route("[controller]")]
+    [ApiController]
+    public class MusicsController(SpotifyClient spotify) : ControllerBase
     {
+        private readonly SpotifyClient _spotify = spotify;
+
+        [HttpGet("{musicName}")]
         public async Task<ActionResult> GetMusic(string musicName)
         {
-            var spotify = new SpotifyClient("your_access_token");
-            var searchResults = await spotify.Search.Item(new SearchRequest(SearchRequest.Types.Track, musicName));
-            return Ok(searchResults);
+            var music = await _spotify.Search.Item(new SearchRequest(SearchRequest.Types.Track, musicName));
+            return Ok(music);
         }
     }
 }

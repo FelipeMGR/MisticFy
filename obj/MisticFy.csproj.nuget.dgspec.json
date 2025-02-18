@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\felip\\OneDrive\\Documents\\Projetos\\MisticFy\\MisticFy.csproj": {}
+    "C:\\Users\\felip\\OneDrive\\Documents\\MusicFy\\MisticFy\\MisticFy.csproj": {}
   },
   "projects": {
-    "C:\\Users\\felip\\OneDrive\\Documents\\Projetos\\MisticFy\\MisticFy.csproj": {
+    "C:\\Users\\felip\\OneDrive\\Documents\\MusicFy\\MisticFy\\MisticFy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\felip\\OneDrive\\Documents\\Projetos\\MisticFy\\MisticFy.csproj",
+        "projectUniqueName": "C:\\Users\\felip\\OneDrive\\Documents\\MusicFy\\MisticFy\\MisticFy.csproj",
         "projectName": "MisticFy",
-        "projectPath": "C:\\Users\\felip\\OneDrive\\Documents\\Projetos\\MisticFy\\MisticFy.csproj",
+        "projectPath": "C:\\Users\\felip\\OneDrive\\Documents\\MusicFy\\MisticFy\\MisticFy.csproj",
         "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\felip\\OneDrive\\Documents\\Projetos\\MisticFy\\obj\\",
+        "outputPath": "C:\\Users\\felip\\OneDrive\\Documents\\MusicFy\\MisticFy\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

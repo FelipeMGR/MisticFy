@@ -1,9 +1,35 @@
+using Newtonsoft.Json;
+using SpotifyAPI.Web;
+using SpotifyAPI;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Configuration.AddJsonFile("appsettings.Development.json");
+builder.Services.AddHttpClient<SpotifyAuthService>();
+builder.Services.AddTransient<SpotifyClient>(sp =>
+{
+    var configuration = builder.Configuration.GetSection("Spotify"); // Obtém as configurações do Spotify
+    var clientId = configuration["ClientId"];
+    var clientSecret = configuration["ClientSecret"];
+
+    Console.WriteLine($"ClientId: {clientId}");
+    Console.WriteLine($"ClientSecret: {clientSecret}");
+
+    if (string.IsNullOrEmpty(clientId) || string.IsNullOrEmpty(clientSecret))
+    {
+        throw new InvalidOperationException("ClientId and ClientSecret must be provided.");
+    }
+
+    var config = SpotifyClientConfig.CreateDefault();
+    var request = new ClientCredentialsRequest(clientId, clientSecret);
+    var response = new OAuthClient(config).RequestToken(request).Result;
+
+    var token = new SpotifyClient(config.WithToken(response.AccessToken));
+    return token;
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -16,7 +42,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
