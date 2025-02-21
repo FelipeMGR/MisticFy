@@ -8,7 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Configuration.AddJsonFile("appsettings.Development.json");
-builder.Services.AddHttpClient<SpotifyAuthService>();
 builder.Services.AddTransient<SpotifyClient>(sp =>
 {
     var configuration = builder.Configuration.GetSection("Spotify"); // Obtém as configurações do Spotify
