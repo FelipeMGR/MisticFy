@@ -40,3 +40,6 @@ C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\obj\Debug\net8.0\refint\Misti
 C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\obj\Debug\net8.0\MisticFy.pdb
 C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\obj\Debug\net8.0\MisticFy.genruntimeconfig.cache
 C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\obj\Debug\net8.0\ref\MisticFy.dll
+C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\EmbedIO.dll
+C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\SpotifyAPI.Web.Auth.dll
+C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\Swan.Lite.dll
