@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MisticFy.Models;
 using SpotifyAPI.Web;
 
 namespace MisticFy.Controllers
@@ -8,6 +9,7 @@ namespace MisticFy.Controllers
     [ApiController]
     public class MusicsController(SpotifyClient spotify) : ControllerBase
     {
+        //private readonly PlaylistRepository _playlistRepository;
         private readonly SpotifyClient _spotify = spotify;
 
         [HttpGet("{musicName}")]
