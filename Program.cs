@@ -14,8 +14,6 @@ builder.Services.AddTransient<SpotifyClient>(sp =>
     var clientId = configuration["ClientId"];
     var clientSecret = configuration["ClientSecret"];
 
-    Console.WriteLine($"ClientId: {clientId}");
-    Console.WriteLine($"ClientSecret: {clientSecret}");
 
     if (string.IsNullOrEmpty(clientId) || string.IsNullOrEmpty(clientSecret))
     {
