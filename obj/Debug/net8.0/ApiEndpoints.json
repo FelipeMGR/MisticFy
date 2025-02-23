@@ -1,0 +1,102 @@
+[
+  {
+    "ContainingType": "LoginController",
+    "Method": "Authorize",
+    "RelativePath": "Login/authorize",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoginController",
+    "Method": "Callback",
+    "RelativePath": "Login/callback",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MisticFy.Controllers.MusicsController",
+    "Method": "GetMusic",
+    "RelativePath": "Musics/{musicName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "musicName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MisticFy.Controllers.MusicsController",
+    "Method": "GetSingleAlbum",
+    "RelativePath": "Musics/album/{albumId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "albumId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MisticFy.Controllers.PlaylistController",
+    "Method": "GetPlaylistAsyc",
+    "RelativePath": "Playlist/{playlistId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Authentication",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "playlistId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MisticFy.Controllers.PlaylistController",
+    "Method": "CreatePlaylistAsync",
+    "RelativePath": "Playlist/createPlaylist",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "playlist",
+        "Type": "MisticFy.Models.Playlist",
+        "IsRequired": true
+      },
+      {
+        "Name": "Authentication",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using SpotifyAPI.Web;
 using SpotifyAPI;
+using MisticFy.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Configuration.AddJsonFile("appsettings.Development.json");
+builder.Services.AddScoped<IPlaylistRepository, PlaylistRepository>();
 builder.Services.AddTransient<SpotifyClient>(sp =>
 {
     var configuration = builder.Configuration.GetSection("Spotify"); // Obtém as configurações do Spotify
