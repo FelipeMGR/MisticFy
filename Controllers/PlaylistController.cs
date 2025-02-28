@@ -1,56 +1,79 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MisticFy.Models;
 using MisticFy.Repositories;
+using MisticFy.Services;
 using SpotifyAPI.Web;
 
 namespace MisticFy.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class PlaylistController(IPlaylistRepository playlist) : ControllerBase
+    public class PlaylistController(IPlaylistRepository playlist, IUserService _userService) : ControllerBase
     {
 
         private readonly IPlaylistRepository _playlist = playlist;
 
         [HttpGet("{userPlaylist}")]
-        public async Task<ActionResult> GetPlaylistAsyc([FromHeader(Name = "Authorization")] string token, [FromRoute] string userPlaylist)
+        [Authorize]
+        public async Task<ActionResult> GetPlaylistAsyc([FromRoute] string userPlaylist)
         {
-            if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(userPlaylist))
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userId))
             {
-                return BadRequest("Token/Playlist is required");
+                return Unauthorized("User not authenticated.");
             }
 
-            var playlist = await _playlist.GetUserPlaylistAsync(token, userPlaylist);
+            var user = await _userService.GetUserByIdAsync(int.Parse(userId));
+            if (user == null || string.IsNullOrEmpty(user.AccessToken))
+            {
+                return Unauthorized("User not found or access token missing.");
+            }
+
+            var playlist = await _playlist.GetUserPlaylistAsync(user.AccessToken, userPlaylist);
             return Ok(playlist);
+
         }
 
         [HttpPost("{playlistId}")]
-        public async Task<ActionResult<Playlist>> UpdatePlaylist([FromHeader(Name = "Authorization")] string token, [FromBody] List<string> uris, string playlistId)
+        [Authorize]
+        public async Task<ActionResult<Playlist>> UpdatePlaylist([FromBody] List<string> uris, string playlistId)
         {
-            if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(playlistId))
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userId))
             {
-                return BadRequest("Token/Playlist is required");
+                return Unauthorized("User not authenticated.");
             }
 
-            var playlist = await _playlist.AddSongToPlaylist(token, uris, playlistId);
+            var user = await _userService.GetUserByIdAsync(int.Parse(userId));
+            if (user == null || string.IsNullOrEmpty(user.AccessToken))
+            {
+                return Unauthorized("User not found or access token missing.");
+            }
 
+            var playlist = await _playlist.AddSongToPlaylist(user.AccessToken, uris, playlistId);
             return Ok(playlist);
         }
 
         [HttpPost("createPlaylist")]
-        public async Task<ActionResult> CreatePlaylistAsync([FromHeader(Name = "Authorization")] string token, [FromBody] Playlist playlist)
+        [Authorize]
+        public async Task<ActionResult> CreatePlaylistAsync([FromBody] Playlist playlist)
         {
-            if (string.IsNullOrEmpty(token))
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userId))
             {
-                return BadRequest("Authentication token is required");
-            }
-            else if (playlist == null)
-            {
-                return BadRequest("Please, enter the playlist info");
+                return Unauthorized("User not authenticated.");
             }
 
-            var userPlaylist = await _playlist.CreatePlaylistAsync(token, playlist);
+            var user = await _userService.GetUserByIdAsync(int.Parse(userId));
+            if (user == null || string.IsNullOrEmpty(user.AccessToken))
+            {
+                return Unauthorized("User not found or access token missing.");
+            }
+
+            var userPlaylist = await _playlist.CreatePlaylistAsync(user.AccessToken, playlist);
 
             return Ok(userPlaylist);
         }
