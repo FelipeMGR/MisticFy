@@ -20,6 +20,7 @@ public class PlaylistRepository : IPlaylistRepository
 
     var newPlayList = await spotify.Playlists.Create(userId, new PlaylistCreateRequest(playlist.Name)
     {
+
       Description = playlist.Description,
       Public = playlist.IsPublic
     });
@@ -64,6 +65,36 @@ public class PlaylistRepository : IPlaylistRepository
       Name = playlist.Name,
       Description = playlist.Description,
       Musics = playlistMusics
+    };
+  }
+
+  public async Task<ActionResult<Playlist>> AddSongToPlaylist([FromHeader(Name = "Authorization")] string token, [FromBody] List<string> uris, string playlistId)
+  {
+    var acessToken = token.Replace("Bearer ", "").Trim();
+
+    var config = SpotifyClientConfig.CreateDefault().WithToken(acessToken);
+    var spotify = new SpotifyClient(config);
+    var updateRequest = new PlaylistAddItemsRequest(uris);
+
+    var result = await spotify.Playlists.AddItems(playlistId, updateRequest);
+
+    await Task.Delay(1000);
+
+    var updatedPlaylist = await spotify.Playlists.Get(playlistId);
+
+    var musics = updatedPlaylist.Tracks.Items
+                    .Where(item => item.Track is FullTrack)
+                    .Select(m => new Music
+                    {
+                      MusicName = ((FullTrack)m.Track).Name
+                    })
+                    .ToList();
+
+
+    return new Playlist
+    {
+      Name = updatedPlaylist.Name,
+      Musics = musics
     };
   }
 }
