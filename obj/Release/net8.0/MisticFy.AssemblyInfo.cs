@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MisticFy")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dfb769ff875f9b064aa99a5a4b4694bd53bf831b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+01be37f941f2c8fee837804f1c6ae0eabd7c121f")]
 [assembly: System.Reflection.AssemblyProductAttribute("MisticFy")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MisticFy")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -42,36 +42,56 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "MisticFy.Controllers.MusicsController",
-    "Method": "GetSingleAlbum",
-    "RelativePath": "Musics/album/{albumId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "albumId",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "MisticFy.Controllers.PlaylistController",
-    "Method": "GetPlaylistAsyc",
-    "RelativePath": "Playlist/{playlistId}",
-    "HttpMethod": "GET",
+    "Method": "UpdatePlaylist",
+    "RelativePath": "Playlist/{playlistId}/track",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Authentication",
+        "Name": "Authorization",
         "Type": "System.String",
         "IsRequired": false
       },
       {
+        "Name": "uris",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      },
+      {
         "Name": "playlistId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "MisticFy.Models.Playlist",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MisticFy.Controllers.PlaylistController",
+    "Method": "GetPlaylistAsyc",
+    "RelativePath": "Playlist/{userPlaylist}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Authorization",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "userPlaylist",
         "Type": "System.String",
         "IsRequired": true
       }
@@ -87,14 +107,14 @@
     "Order": 0,
     "Parameters": [
       {
+        "Name": "Authorization",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
         "Name": "playlist",
         "Type": "MisticFy.Models.Playlist",
         "IsRequired": true
-      },
-      {
-        "Name": "Authentication",
-        "Type": "System.String",
-        "IsRequired": false
       }
     ],
     "ReturnTypes": []
