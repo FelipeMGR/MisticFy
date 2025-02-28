@@ -8,7 +8,7 @@ namespace MisticFy.Repositories;
 
 public class PlaylistRepository : IPlaylistRepository
 {
-  public async Task<ActionResult<Playlist>> CreatePlaylistAsync([FromHeader(Name = "Authentication")] string token, [FromBody] Playlist playlist)
+  public async Task<ActionResult<Playlist>> CreatePlaylistAsync([FromHeader(Name = "Authorization")] string token, [FromBody] Playlist playlist)
   {
     var acessToken = token.Replace("Bearer ", "");
 
@@ -32,7 +32,7 @@ public class PlaylistRepository : IPlaylistRepository
     };
   }
 
-  public async Task<ActionResult<Playlist>> GetUserPlaylistAsync([FromHeader(Name = "Authentication")] string token, string playlistId)
+  public async Task<ActionResult<Playlist>> GetUserPlaylistAsync([FromHeader(Name = "Authorization")] string token, string playlistId)
   {
     var acessToken = token.Replace("Bearer ", "").Trim();
 
@@ -60,6 +60,7 @@ public class PlaylistRepository : IPlaylistRepository
 
     return new Playlist
     {
+      //Id = int.Parse(playlist.Id),
       Name = playlist.Name,
       Description = playlist.Description,
       Musics = playlistMusics

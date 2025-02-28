@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MisticFy.Models;
+using MisticFy.Repositories;
 using SpotifyAPI.Web;
 
 namespace MisticFy.Controllers
@@ -9,7 +10,6 @@ namespace MisticFy.Controllers
     [ApiController]
     public class MusicsController(SpotifyClient spotify) : ControllerBase
     {
-        //private readonly PlaylistRepository _playlistRepository;
         private readonly SpotifyClient _spotify = spotify;
 
         [HttpGet("{musicName}")]
@@ -17,18 +17,6 @@ namespace MisticFy.Controllers
         {
             var music = await _spotify.Search.Item(new SearchRequest(SearchRequest.Types.Track, musicName));
             return Ok(music);
-        }
-
-        [HttpGet("album/{albumId}")]
-        public async Task<ActionResult> GetSingleAlbum(string albumId)
-        {
-            var album = await _spotify.Albums.Get(albumId);
-
-            if (album == null)
-            {
-                return NotFound("Album not found. Check the album ID and try again.");
-            }
-            return Ok(album);
         }
     }
 }

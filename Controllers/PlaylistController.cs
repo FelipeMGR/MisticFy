@@ -13,20 +13,33 @@ namespace MisticFy.Controllers
 
         private readonly IPlaylistRepository _playlist = playlist;
 
-        [HttpGet("{playlistId}")]
-        public async Task<ActionResult> GetPlaylistAsyc([FromHeader(Name = "Authentication")] string token, [FromRoute] string playlistId)
+        [HttpGet("{userPlaylist}")]
+        public async Task<ActionResult> GetPlaylistAsyc([FromHeader(Name = "Authorization")] string token, [FromRoute] string userPlaylist)
+        {
+            if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(userPlaylist))
+            {
+                return BadRequest("Token/Playlist is required");
+            }
+
+            var playlist = await _playlist.GetUserPlaylistAsync(token, userPlaylist);
+            return Ok(playlist);
+        }
+
+        [HttpPost("{playlistId}")]
+        public async Task<ActionResult<Playlist>> UpdatePlaylist([FromHeader(Name = "Authorization")] string token, [FromBody] List<string> uris, string playlistId)
         {
             if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(playlistId))
             {
                 return BadRequest("Token/Playlist is required");
             }
 
-            var userPlaylist = await _playlist.GetUserPlaylistAsync(token, playlistId);
-            return Ok(userPlaylist);
+            var playlist = await _playlist.AddSongToPlaylist(token, uris, playlistId);
+
+            return Ok(playlist);
         }
 
         [HttpPost("createPlaylist")]
-        public async Task<ActionResult> CreatePlaylistAsync([FromBody] Playlist playlist, [FromHeader(Name = "Authentication")] string token)
+        public async Task<ActionResult> CreatePlaylistAsync([FromHeader(Name = "Authorization")] string token, [FromBody] Playlist playlist)
         {
             if (string.IsNullOrEmpty(token))
             {
