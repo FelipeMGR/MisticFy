@@ -4,10 +4,12 @@ using SpotifyAPI.Web;
 using SpotifyAPI.Web.Auth;
 using MisticFy.Models;
 using Microsoft.OpenApi.Writers;
+using System.Security.Claims;
+using MisticFy.Services;
 
 [ApiController]
 [Route("[controller]")]
-public class LoginController(IConfiguration configuration) : ControllerBase
+public class LoginController(IConfiguration configuration, IUserService _userService, ITokenService _token) : ControllerBase
 {
     private readonly string _clientId = configuration["Spotify:ClientId"];
     private readonly string _clientSecret = configuration["Spotify:ClientSecret"];
@@ -29,24 +31,32 @@ public class LoginController(IConfiguration configuration) : ControllerBase
     {
         try
         {
-            var config = SpotifyClientConfig.CreateDefault();
-            var request = new AuthorizationCodeTokenRequest(
-                _clientId,
-                _clientSecret,
-                code,
-                new Uri(_redirectUri)
+            var tokenResponse = await new OAuthClient().RequestToken(
+                new AuthorizationCodeTokenRequest(_clientId, _clientSecret, code, new Uri(_redirectUri))
             );
 
-            var response = await new OAuthClient(config).RequestToken(request);
+            var spotify = new SpotifyClient(tokenResponse.AccessToken);
+            var spotifyProfile = await spotify.UserProfile.Current();
 
-            // Use the access token to initialize the Spotify client
-            var spotify = new SpotifyClient(config.WithToken(response.AccessToken));
+            var user = await _userService.FindOrCreateUserAsync(
+                spotifyProfile.Id,
+                spotifyProfile.DisplayName,
+                spotifyProfile.Email,
+                tokenResponse.AccessToken,
+                tokenResponse.RefreshToken,
+                tokenResponse.ExpiresIn
+            );
 
-            // Fetch user profile (example)
-            var profile = await spotify.UserProfile.Current();
-            Console.WriteLine($"Logged in as: {profile.DisplayName}");
+            var claims = new List<Claim>
+            {
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new Claim(ClaimTypes.Email, user.Email),
+            new Claim(ClaimTypes.AuthorizationDecision, user.AccessToken)
+            };
 
-            return Ok(new { response.AccessToken, response.TokenType });
+            var jwtToken = _token.GenerateAccessToken(claims, configuration);
+            Console.WriteLine($"Logged in as: {spotifyProfile.DisplayName}");
+            return Ok(new { Token = jwtToken });
         }
         catch (Exception ex)
         {
