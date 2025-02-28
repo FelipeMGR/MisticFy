@@ -8,7 +8,7 @@ namespace MisticFy.Repositories;
 
 public class PlaylistRepository : IPlaylistRepository
 {
-  public async Task<ActionResult<Playlist>> CreatePlaylistAsync([FromHeader(Name = "Authorization")] string token, [FromBody] Playlist playlist)
+  public async Task<ActionResult<Playlist>> CreatePlaylistAsync(string token, [FromBody] Playlist playlist)
   {
     var acessToken = token.Replace("Bearer ", "");
 
@@ -33,7 +33,7 @@ public class PlaylistRepository : IPlaylistRepository
     };
   }
 
-  public async Task<ActionResult<Playlist>> GetUserPlaylistAsync([FromHeader(Name = "Authorization")] string token, string playlistId)
+  public async Task<ActionResult<Playlist>> GetUserPlaylistAsync(string token, string playlistId)
   {
     var acessToken = token.Replace("Bearer ", "").Trim();
 
@@ -68,7 +68,7 @@ public class PlaylistRepository : IPlaylistRepository
     };
   }
 
-  public async Task<ActionResult<Playlist>> AddSongToPlaylist([FromHeader(Name = "Authorization")] string token, [FromBody] List<string> uris, string playlistId)
+  public async Task<ActionResult<Playlist>> AddSongToPlaylist(string token, [FromBody] List<string> uris, string playlistId)
   {
     var acessToken = token.Replace("Bearer ", "").Trim();
 
@@ -77,8 +77,6 @@ public class PlaylistRepository : IPlaylistRepository
     var updateRequest = new PlaylistAddItemsRequest(uris);
 
     var result = await spotify.Playlists.AddItems(playlistId, updateRequest);
-
-    await Task.Delay(1000);
 
     var updatedPlaylist = await spotify.Playlists.Get(playlistId);
 
