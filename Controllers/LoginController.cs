@@ -18,7 +18,7 @@ public class LoginController(IConfiguration configuration) : ControllerBase
     {
         var request = new LoginRequest(new Uri(_redirectUri), _clientId, LoginRequest.ResponseType.Code)
         {
-            Scope = new List<string> { Scopes.UserReadPrivate, Scopes.UserReadEmail }
+            Scope = new List<string> { Scopes.UserReadPrivate, Scopes.UserReadEmail, Scopes.PlaylistModifyPublic, Scopes.PlaylistModifyPrivate }
         };
         var uri = request.ToUri();
         return Redirect(uri.ToString());
