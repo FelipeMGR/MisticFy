@@ -25,7 +25,8 @@
 
 <h1>Technologies</h1>
 
-<ul> 
+<ol> 
+<ul>
 <li><h2>Frontend</h2>
 <li>Framework: Angular</li>
 <li>Language: TypeScript</li>
@@ -42,3 +43,4 @@
 <li>Library: SpotifyWeb API (.NET version)</li>
 </li>
 </ul>
+</ol>
