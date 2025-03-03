@@ -11,7 +11,7 @@ public class TokenService : ITokenService
 {
   public string GenerateAccessToken(IEnumerable<Claim> claims, IConfiguration _config)
   {
-    var key = _config.GetSection("JWT").GetValue<string>("SecretKey") ?? throw new InvalidOperationException("Chave inválida.");
+    var key = _config.GetSection("JWT").GetValue<string>("SecretKey") ?? throw new InvalidOperationException("Invalid key.");
 
     var privateKey = Encoding.UTF8.GetBytes(key);
 

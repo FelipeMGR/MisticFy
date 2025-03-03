@@ -5,23 +5,18 @@ using MisticFy.Models;
 
 namespace MisticFy.Services;
 
-public class UserService : IUserService
+public class UserService(AppDbContext db) : IUserService
 {
-  private readonly AppDbContext _db;
-
-  public UserService(AppDbContext db)
-  {
-    _db = db;
-  }
+  private readonly AppDbContext _db = db;
 
   public async Task<Users> FindOrCreateUserAsync(
-      string spotifyUserId,
-      string Name,
-      string email,
-      string accessToken,
-      string refreshToken,
-      int expiresIn
-  )
+    string spotifyUserId,
+    string Name,
+    string email,
+    string accessToken,
+    string refreshToken,
+    int expiresIn
+)
   {
     var user = await _db.Users.FirstOrDefaultAsync(u => u.SpotifyUserId == spotifyUserId);
 

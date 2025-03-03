@@ -20,7 +20,7 @@ public class LoginController(IConfiguration configuration, IUserService _userSer
     {
         var request = new LoginRequest(new Uri(_redirectUri), _clientId, LoginRequest.ResponseType.Code)
         {
-            Scope = new List<string> { Scopes.UserReadPrivate, Scopes.UserReadEmail, Scopes.PlaylistModifyPublic, Scopes.PlaylistModifyPrivate }
+            Scope = [Scopes.UserReadPrivate, Scopes.UserReadEmail, Scopes.PlaylistModifyPublic, Scopes.PlaylistModifyPrivate]
         };
         var uri = request.ToUri();
         return Redirect(uri.ToString());
@@ -49,9 +49,9 @@ public class LoginController(IConfiguration configuration, IUserService _userSer
 
             var claims = new List<Claim>
             {
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.AuthorizationDecision, user.AccessToken)
+            new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new(ClaimTypes.Email, user.Email),
+            new(ClaimTypes.AuthorizationDecision, user.AccessToken)
             };
 
             var jwtToken = _token.GenerateAccessToken(claims, configuration);

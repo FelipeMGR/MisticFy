@@ -25,15 +25,13 @@ public class SpotifyAuthMiddleware
 
       if (user != null)
       {
-        // Refresh token if expired
         if (user.TokenExpiresAt < DateTime.UtcNow)
         {
           user.AccessToken = await tokenRefresher.RefreshTokenAsync(user.RefreshToken);
-          user.TokenExpiresAt = DateTime.UtcNow.AddSeconds(3600); // 1 hour
+          user.TokenExpiresAt = DateTime.UtcNow.AddSeconds(3600);
           await db.SaveChangesAsync();
         }
 
-        // Attach Spotify client to the request context
         var spotify = new SpotifyClient(user.AccessToken);
         context.Items["SpotifyClient"] = spotify;
       }

@@ -44,12 +44,11 @@ public class PlaylistRepository : IPlaylistRepository
 
     List<Music> playlistMusics = new List<Music>();
 
-    if (playlist.Tracks.Items != null)
+    if (playlist?.Tracks?.Items != null)
     {
       foreach (var item in playlist.Tracks.Items)
       {
-        var track = item.Track as FullTrack;
-        if (track != null)
+        if (item.Track is FullTrack track)
         {
           playlistMusics.Add(new Music
           {
@@ -61,9 +60,8 @@ public class PlaylistRepository : IPlaylistRepository
 
     return new Playlist
     {
-      //Id = int.Parse(playlist.Id),
-      Name = playlist.Name,
-      Description = playlist.Description,
+      Name = playlist?.Name,
+      Description = playlist?.Description,
       Musics = playlistMusics
     };
   }
@@ -80,7 +78,7 @@ public class PlaylistRepository : IPlaylistRepository
 
     var updatedPlaylist = await spotify.Playlists.Get(playlistId);
 
-    var musics = updatedPlaylist.Tracks.Items
+    var musics = updatedPlaylist?.Tracks?.Items
                     .Where(item => item.Track is FullTrack)
                     .Select(m => new Music
                     {
