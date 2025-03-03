@@ -10,8 +10,8 @@
 <h1>Main functionalities</h1>
 
 <ul>Music reproduction
-<li>- Play, pause, stop, skip and volume adjustments are some of the main functions of our player</li>
-<li>- Progress bar to every song</li>
+<li> Play, pause, stop, skip and volume adjustments are some of the main functions of our player</li>
+<li> Progress bar to every song</li>
 </ul>
 
 <h2>Playlist management</h2>
@@ -25,7 +25,7 @@
 
 <h1>Technologies</h1>
 
-<ol> 
+<ul> 
 <li><h2>Frontend</h2>
 <li>Framework: Angular</li>
 <li>Language: TypeScript</li>
@@ -41,4 +41,4 @@
 <li><h2>Audio Reproduction</h2>
 <li>Library: SpotifyWeb API (.NET version)</li>
 </li>
-</ol>
+</ul>
