@@ -1,1 +1,1 @@
-##The beginning of a new music player. Welcome to MisticFy!
+<h1>MisticFy - A new way to listen songs!</h1>
