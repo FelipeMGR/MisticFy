@@ -38,9 +38,9 @@ public class PlaylistRepository : IPlaylistRepository
     var acessToken = token.Replace("Bearer ", "").Trim();
 
     var config = SpotifyClientConfig.CreateDefault().WithToken(acessToken);
-    var client = new SpotifyClient(config);
+    var spotify = new SpotifyClient(config);
 
-    var playlist = await client.Playlists.Get(playlistId);
+    var playlist = await spotify.Playlists.Get(playlistId);
 
     List<Music> playlistMusics = new List<Music>();
 

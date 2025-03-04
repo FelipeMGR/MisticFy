@@ -1,10 +1,10 @@
 # Controllers
 
-> We have some controllers in our project, some of which work by the SpotifyAPI standards. We'll explain how they function and how their implementation is made, so stay with us!
+ We have some controllers in our project, some of which work by the SpotifyAPI standards. We'll explain how they function and how their implementation is made, so stay with us!
 
 ## The Login
 
-> To authorize the user to use SpotifyAPI endpoints, we first need to perform a quick authorization (using SpotifyAPI's own logic). Here's how it works
+ To authorize the user to use SpotifyAPI endpoints, we first need to perform a quick authorization (using SpotifyAPI's own logic). Here's how it works
 
 * User is requested to log in with their Spotify account:
 
@@ -43,7 +43,7 @@
         }
 ```
 
-> The user receives an authorization token to access other endpoints, as well as his acess claims.
+ The user receives an authorization token to access other endpoints, as well as his acess claims.
 
 ## The Playlists
 
@@ -51,7 +51,7 @@
 
 ### Obtaining a playlist based on ID
 
-> Most of the method used on these endpoints are being called from the PlaylistRepository, wich will be presented later on.
+ Most of the method used on these endpoints are being called from the PlaylistRepository, wich will be presented later on.
 
 ```csharp
     [HttpGet("{userPlaylist}")]
@@ -75,7 +75,7 @@
     }
 ```
 
-> With this endpoint we're able to return the user's informed playlist (based on the ID that was given in the URL).
+ With this endpoint we're able to return the user's informed playlist (based on the ID that was given in the URL).
 
 ### Playlist Creation
 
@@ -132,8 +132,7 @@
         }
 ```
 
-> Here we receive the songs the user wants to add to the playlist (their spotify id, wich would be something like: "spotify:track:7MXVkk9YMctZqd1Srtv4MB"), and the playlist ID that they want to update.
+ Here we receive the songs the user wants to add to the playlist (their spotify id, wich would be something like: "spotify:track:7MXVkk9YMctZqd1Srtv4MB"), and the playlist ID that they want to update.
 
-#### Important
-
-> _every endpoint check for any nullable value for both the user identification and their acess token. If one of them is null/invalid, a excpetion is throwed._
+## Important:
+ _every endpoint check for any nullable value for both the user identification and their acess token. If one of them is null/invalid, a excpetion is throwed._

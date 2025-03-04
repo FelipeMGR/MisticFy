@@ -1,11 +1,11 @@
 # Overview
 
-> The MisticFy is a Spotify like app, where you can search and listen to your favorite musics! You can also create your
+ The MisticFy is a Spotify like app, where you can search and listen to your favorite musics! You can also create your
   own playlist, and even use those one from Spotify
 
 # Objective
 
-> Our main goal here is to create a next generation plataform for our users! Our objective is to be more than a simple
+ Our main goal here is to create a next generation plataform for our users! Our objective is to be more than a simple
   player, but something beyond that.
 
 
