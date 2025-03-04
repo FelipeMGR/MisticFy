@@ -12,48 +12,43 @@
 
     <ol>
       <li>User is requested to log in with their Spotify account:</li>
-      <li>
-        <pre><code class="language-csharp">
-[HttpGet("authorize")]
-public IActionResult Authorize()
-{
-    var request = new LoginRequest(new Uri(_redirectUri), _clientId, LoginRequest.ResponseType.Code)
-    {
-        Scope = [Scopes.UserReadPrivate, Scopes.UserReadEmail, Scopes.PlaylistModifyPublic, Scopes.PlaylistModifyPrivate]
-    };
-    var uri = request.ToUri();
-    return Redirect(uri.ToString());
-}
+      <pre><code class="language-csharp">
+            [HttpGet("authorize")]
+              public IActionResult Authorize()
+              {
+                  var request = new LoginRequest(new Uri(_redirectUri), _clientId, LoginRequest.ResponseType.Code)
+                  {
+                      Scope = [Scopes.UserReadPrivate, Scopes.UserReadEmail, Scopes.PlaylistModifyPublic, Scopes.PlaylistModifyPrivate]
+                  };
+                  var uri = request.ToUri();
+                  return Redirect(uri.ToString());
+              }
         </code></pre>
-      </li>
 
       <li>After logging in, they will be redirected to the callback endpoint:</li>
-      <li>
-        <pre><code class="language-csharp">
-[HttpGet("callback")]
-public async Task<IActionResult> Callback(string code)
-{
-    try
-    {
-        var tokenResponse = await new OAuthClient().RequestToken(
-            new AuthorizationCodeTokenRequest(_clientId, _clientSecret, code, new Uri(_redirectUri))
-        );
+      <pre>
+          <code class="language-csharp">
+            [HttpGet("callback")]
+            public async Task<IActionResult> Callback(string code)
+            {
+                try
+                {
+                    var tokenResponse = await new OAuthClient().RequestToken(
+                        new AuthorizationCodeTokenRequest(_clientId, _clientSecret, code, new Uri(_redirectUri))
+                    );
 
-        // ... (rest of the code)
-        return Ok(new { Token = jwtToken });
-    }
-    catch (Exception ex)
-    {
-        return BadRequest(new { Error = ex.Message });
-    }
-}
-        </code></pre>
-      </li>
-
+                    // ... (rest of the code)
+                    return Ok(new { Token = jwtToken });
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(new { Error = ex.Message });
+                }
+            }
+          </code>
+      </pre>
       <li>The user receives an authorization token to access other endpoints.</li>
-    </ol>
   </li>
-
   <!-- Playlist Controller Section -->
   <li>
     <h2>The Playlist Controller</h2>
@@ -82,7 +77,5 @@ public async Task<IActionResult> Callback(string code)
             return Ok(playlist);
         }
     </code></pre>
-
-    <p>The GetUserByIdAsync function is being called from the PlaylistRepository.</p>
   </li>
 </ol>
