@@ -9,7 +9,8 @@
 
 <h1>Main functionalities</h1>
 
-<ul>Music reproduction
+<ul>
+<h2>Music reproduction</h2>
 <li> Play, pause, stop, skip and volume adjustments are some of the main functions of our player</li>
 <li> Progress bar to every song</li>
 </ul>
@@ -27,13 +28,13 @@
 
 <ol> 
 <ul>
-<li><h2>Frontend</h2>
+<h2>Frontend</h2>
 <li>Framework: Angular</li>
 <li>Language: TypeScript</li>
 <li>Styling: CSS</li>
 </li>
 
-<li><h2>Backend</h2>
+<h2>Backend</h2>
 <li>Language: C#/.NET</li>
 <li>Data Base: MySQL Server</li>
 <li>API: RestFull</li>
