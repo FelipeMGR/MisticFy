@@ -1,49 +1,40 @@
-<h1>Overview</h1>
+# Overview
 
-<p>The MisticFy is a Spotify like app, where you can search and listen to your favorite musics! You can also create your
-  own playlist, and even use those one from Spotify</p>
+> The MisticFy is a Spotify like app, where you can search and listen to your favorite musics! You can also create your
+  own playlist, and even use those one from Spotify
 
-<h1>Objective</h1>
+# Objective
 
-<p>Our main goal here is to create a next generation plataform for our users! Our objective is to be more than a simple
-  player, but something beyond that. </p>
+> Our main goal here is to create a next generation plataform for our users! Our objective is to be more than a simple
+  player, but something beyond that.
 
 
-<h1>Main functionalities</h1>
+# Main functionalities
 
-<ul>
-  <h2>Music reproduction</h2>
-  <li> Play, pause, stop, skip and volume adjustments are some of the main functions of our player</li>
-  <li> Progress bar to every song</li>
+  1. ## Music reproduction
+   Play, pause, stop, skip and volume adjustments are some of the main functions of our player
+   Progress bar to every song
 
-  <h2>Playlist management</h2>
-  <li> Users can create, update and rmeove playlists at will</li>
-  <li> Users can also add and remove any song from their personal playlist</li>
+  2. ## Playlist management
+  Users can create, update and rmeove playlists at will
+  Users can also add and remove any song from their personal playlist
 
-  <h2>Searching</h2>
-  <li> Users can search for musics, artists and albums</li>
-  <li> The search can be made by music, artist and album</li>
-</ul>
+  3. ## Searching
+  Users can search for musics, artists and albums
+  The search can be made by music, artist and album
 
-<h1>Technologies</h1>
+# Technologies
 
-<ol>
-  <ul>
-    <h2>Frontend</h2>
-    <li>Framework: Angular</li>
-    <li>Language: TypeScript</li>
-    <li>Styling: CSS</li>
-    </li>
+  * ## Frontend
+    Framework: Angular
+    Language: TypeScript
+    Styling: CSS
+    
 
-    <h2>Backend</h2>
-    <li>Language: C#/.NET</li>
-    <li>Data Base: MySQL Server</li>
-    <li>API: RestFull</li>
-    </li>
+    * ## Backend
+    Language: C#/.NET
+    Data Base: MySQL Server
+    API: RestFull
 
-    <li>
-      <h2>Audio Reproduction</h2>
-    <li>Library: SpotifyWeb API (.NET version)</li>
-    </li>
-  </ul>
-</ol>
+    * ## Audio Reproduction
+    Library: SpotifyWeb API (.NET version)
