@@ -9,16 +9,16 @@ public class SpotifyProfile : Profile
   public SpotifyProfile()
   {
     // Specific mapping for Paging<TItem, TNextResponse> -> SpotifyPagingDTO<TItem>
-    CreateMap<Paging<IPlayableItem, SearchResponse>, SpotifyPagingDTO<MusicDTO>>()
+    CreateMap<Paging<FullTrack, SearchResponse>, SpotifyPagingDTO<MusicDTO>>()
         .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items.OfType<FullTrack>()));
 
-    CreateMap<Paging<SimpleAlbum, SearchResponse>, SpotifyPagingDTO<SpotifyAlbumDTO>>()
+    CreateMap<Paging<FullAlbum, SearchResponse>, SpotifyPagingDTO<SpotifyAlbumDTO>>()
         .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items));
 
     CreateMap<Paging<FullPlaylist, SearchResponse>, SpotifyPagingDTO<SpotifyPlaylistDTO>>()
         .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items));
 
-    CreateMap<Paging<SimpleArtist, SearchResponse>, SpotifyPagingDTO<SpotifyArtistDTO>>()
+    CreateMap<Paging<FullArtist, SearchResponse>, SpotifyPagingDTO<SpotifyArtistDTO>>()
         .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items));
 
     // Individual mapping
@@ -28,7 +28,7 @@ public class SpotifyProfile : Profile
         .ForMember(dest => dest.Artists, opt => opt.MapFrom(src => src.Artists))
         .ForMember(dest => dest.Album, opt => opt.MapFrom(src => src.Album));
 
-    CreateMap<SimpleArtist, SpotifyArtistDTO>()
+    CreateMap<FullArtist, SpotifyArtistDTO>()
         .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
         .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
 
