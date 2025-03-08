@@ -56,17 +56,17 @@ public class PlaylistRepository : IPlaylistRepository
           playlistMusics.Add(new MusicDTO
           {
             Name = track.Name,
-            Artists = track.Artists.Select(a => new SpotifyArtistDTO
+            Artists = [.. track.Artists.Select(a => new SpotifyArtistDTO
             {
               Name = a.Name
-            }).ToList(),
+            })],
             Album = new SpotifyAlbumDTO
             {
               Name = track.Album.Name,
-              Images = track.Album.Images.Select(i => new SpotifyImageDTO
+              Images = [.. track.Album.Images.Select(i => new SpotifyImageDTO
               {
                 Url = i.Url
-              }).ToList()
+              })]
             }
           });
         }

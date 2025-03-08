@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Net.Http.Headers;
 using MisticFy.DTO;
+using SpotifyAPI.Web;
 
 namespace MisticFy.Services;
 
@@ -10,19 +11,51 @@ public class SpotifyService : ISpotifyService
   public async Task<SpotifySearchResultDTO> SearchAsync(
         string accessToken,
         string query,
-        string types,
+        SearchRequest.Types types,
         int limit)
   {
-    using var client = new HttpClient();
-    client.DefaultRequestHeaders.Authorization =
-        new AuthenticationHeaderValue("Bearer", accessToken);
+    var config = SpotifyClientConfig.CreateDefault().WithToken(accessToken);
+    var spotify = new SpotifyClient(config);
 
-    var encodedQuery = WebUtility.UrlEncode(query);
-    var url = $"https://api.spotify.com/v1/search?q={encodedQuery}&type={types}&limit={limit}";
+    var searchRequest = new SearchRequest(types, query)
+    {
+      Limit = limit
+    };
 
-    var response = await client.GetAsync(url);
-    response.EnsureSuccessStatusCode();
+    var searchResult = await spotify.Search.Item(searchRequest);
 
-    return await response.Content.ReadFromJsonAsync<SpotifySearchResultDTO>();
+    var result = new SpotifySearchResultDTO
+    {
+      Tracks = new SpotifyPagingDTO<MusicDTO>
+      {
+        Items = searchResult.Tracks?.Items.Select(track => new MusicDTO
+        {
+          Id = track.Id,
+          Name = track.Name,
+          Artists = track.Artists.Select(artist => new SpotifyArtistDTO
+          {
+            Id = artist.Id,
+            Name = artist.Name,
+            Uri = artist.Uri
+          }).ToList(),
+          Album = new SpotifyAlbumDTO
+          {
+            Id = track.Album.Id,
+            Name = track.Album.Name,
+            Images = track.Album.Images.Select(image => new SpotifyImageDTO
+            {
+              Url = image.Url
+            }).ToList()
+          }
+        }).ToList(),
+        Total = searchResult.Tracks?.Total ?? 0,
+        Limit = searchResult.Tracks?.Limit ?? 0,
+        Offset = searchResult.Tracks?.Offset ?? 0,
+        Next = searchResult.Tracks?.Next,
+        Previous = searchResult.Tracks?.Previous
+      }
+    };
+
+    return result;
   }
 }

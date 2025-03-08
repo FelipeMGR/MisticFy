@@ -1,9 +1,10 @@
 using System;
 using MisticFy.DTO;
+using SpotifyAPI.Web;
 
 namespace MisticFy.Services;
 
 public interface ISpotifyService
 {
-  Task<SpotifySearchResultDTO> SearchAsync(string accessToken, string query, string types, int limit);
+  Task<SpotifySearchResultDTO> SearchAsync(string accessToken, string query, SearchRequest.Types types, int limit);
 }
