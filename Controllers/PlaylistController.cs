@@ -1,11 +1,9 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MisticFy.Models;
 using MisticFy.Repositories;
 using MisticFy.Services;
-using SpotifyAPI.Web;
 
 namespace MisticFy.Controllers
 {
@@ -29,7 +27,7 @@ namespace MisticFy.Controllers
             var user = await _userService.GetUserByIdAsync(int.Parse(userId));
             if (user == null || string.IsNullOrEmpty(user.AccessToken))
             {
-                return Unauthorized("User not found or access token missing.");
+                return Unauthorized("User not found.");
             }
 
             var playlist = await _playlist.GetUserPlaylistAsync(user.AccessToken, userPlaylist);
