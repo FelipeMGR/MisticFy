@@ -1,12 +1,10 @@
-using System;
-using System.Net;
-using System.Net.Http.Headers;
+using AutoMapper;
 using MisticFy.DTO;
 using SpotifyAPI.Web;
 
 namespace MisticFy.Services;
 
-public class SpotifyService : ISpotifyService
+public class SpotifyService(IMapper _mapper) : ISpotifyService
 {
   public async Task<SpotifySearchResultDTO> SearchAsync(
         string accessToken,
@@ -26,34 +24,10 @@ public class SpotifyService : ISpotifyService
 
     var result = new SpotifySearchResultDTO
     {
-      Tracks = new SpotifyPagingDTO<MusicDTO>
-      {
-        Items = searchResult.Tracks?.Items.Select(track => new MusicDTO
-        {
-          Id = track.Id,
-          Name = track.Name,
-          Artists = track.Artists.Select(artist => new SpotifyArtistDTO
-          {
-            Id = artist.Id,
-            Name = artist.Name,
-            Uri = artist.Uri
-          }).ToList(),
-          Album = new SpotifyAlbumDTO
-          {
-            Id = track.Album.Id,
-            Name = track.Album.Name,
-            Images = track.Album.Images.Select(image => new SpotifyImageDTO
-            {
-              Url = image.Url
-            }).ToList()
-          }
-        }).ToList(),
-        Total = searchResult.Tracks?.Total ?? 0,
-        Limit = searchResult.Tracks?.Limit ?? 0,
-        Offset = searchResult.Tracks?.Offset ?? 0,
-        Next = searchResult.Tracks?.Next,
-        Previous = searchResult.Tracks?.Previous
-      }
+      Tracks = _mapper.Map<SpotifyPagingDTO<MusicDTO>>(searchResult.Tracks),
+      Artists = _mapper.Map<SpotifyPagingDTO<SpotifyArtistDTO>>(searchResult.Artists),
+      Playlists = _mapper.Map<SpotifyPagingDTO<SpotifyPlaylistDTO>>(searchResult.Playlists),
+      Albums = _mapper.Map<SpotifyPagingDTO<SpotifyAlbumDTO>>(searchResult.Albums)
     };
 
     return result;

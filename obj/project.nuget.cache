@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "p6lmv3i/rWA=",
+  "dgSpecHash": "mbbEAUwLfic=",
   "success": true,
   "projectFilePath": "C:\\Users\\felip\\OneDrive\\Documents\\MusicFy\\MisticFy\\MisticFy.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\felip\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\embedio\\3.5.2\\embedio.3.5.2.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.13\\microsoft.aspnetcore.authentication.jwtbearer.8.0.13.nupkg.sha512",
