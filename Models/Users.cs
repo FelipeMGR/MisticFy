@@ -1,6 +1,4 @@
-using System;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Identity;
 
 namespace MisticFy.Models;
 
@@ -15,5 +13,4 @@ public class Users
   public string RefreshToken { get; set; }
   public DateTime TokenExpiresAt { get; set; }
   public List<Playlist> Playlists { get; set; }
-  public List<string> LikedMusics { get; set; }
 }

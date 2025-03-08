@@ -1,4 +1,3 @@
-using System;
 using Microsoft.EntityFrameworkCore;
 using MisticFy.Context;
 using MisticFy.Models;

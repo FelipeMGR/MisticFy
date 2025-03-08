@@ -65,9 +65,10 @@
               "RelativeDocumentMoniker": "Controllers\\LoginController.cs",
               "ToolTip": "C:\\Users\\felip\\OneDrive\\Documents\\MusicFy\\MisticFy\\Controllers\\LoginController.cs",
               "RelativeToolTip": "Controllers\\LoginController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T17:20:08.145Z"
+              "WhenOpened": "2025-02-23T17:20:08.145Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -77,7 +78,7 @@
               "RelativeDocumentMoniker": "Repositories\\PlaylistRepository.cs",
               "ToolTip": "C:\\Users\\felip\\OneDrive\\Documents\\MusicFy\\MisticFy\\Repositories\\PlaylistRepository.cs",
               "RelativeToolTip": "Repositories\\PlaylistRepository.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAAABAAAAAAAAAA",
+              "ViewState": "AgIAADsAAAAAAAAAAAAowBEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-23T02:00:59.145Z",
               "EditorCaption": ""
@@ -90,7 +91,7 @@
               "RelativeDocumentMoniker": "Controllers\\PlaylistController.cs",
               "ToolTip": "C:\\Users\\felip\\OneDrive\\Documents\\MusicFy\\MisticFy\\Controllers\\PlaylistController.cs",
               "RelativeToolTip": "Controllers\\PlaylistController.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAAABEAAAAIAAAA",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAowBMAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-23T02:12:31.943Z",
               "EditorCaption": ""

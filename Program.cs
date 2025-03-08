@@ -1,6 +1,4 @@
-using Newtonsoft.Json;
 using SpotifyAPI.Web;
-using SpotifyAPI;
 using MisticFy.Repositories;
 using MisticFy.Context;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Configuration.AddJsonFile("appsettings.Development.json");
 builder.Services.AddScoped<IPlaylistRepository, PlaylistRepository>();
-builder.Services.AddScoped<IMusicRepository, MusicRepository>();
+builder.Services.AddScoped<ISpotifyService, SpotifyService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ISpotifyTokenRefresher, SpotifyTokenRefresher>();
@@ -45,16 +43,18 @@ builder.Services.AddAuthentication(options =>
     };
 }
 );
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", policy =>
+    options.AddPolicy("AngularClient", policy =>
     {
-        policy.AllowAnyOrigin()
-              .AllowAnyMethod()
+        policy.WithOrigins("http://localhost:4200")
               .AllowAnyHeader()
-              .WithExposedHeaders("Authorization");
+              .AllowAnyMethod().AllowCredentials();
     });
 });
+
+
 builder.Services.AddTransient<SpotifyClient>(sp =>
 {
     var configuration = builder.Configuration.GetSection("Spotify");
@@ -79,8 +79,9 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(connecti
 builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
-
+app.UseCors("AngularClient");
 app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllers();
 app.Run();

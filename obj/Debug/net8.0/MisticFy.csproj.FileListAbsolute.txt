@@ -1,11 +1,5 @@
 C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\appsettings.json
-C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\client\angular.json
-C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\client\package-lock.json
-C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\client\package.json
-C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\client\tsconfig.app.json
-C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\client\tsconfig.json
-C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\client\tsconfig.spec.json
 C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\package-lock.json
 C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\MisticFy.exe
 C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\MisticFy.deps.json
@@ -135,3 +129,4 @@ C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\Microsoft.Id
 C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll

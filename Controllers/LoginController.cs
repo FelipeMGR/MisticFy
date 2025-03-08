@@ -1,11 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using SpotifyAPI.Web;
-using SpotifyAPI.Web.Auth;
-using MisticFy.Models;
-using Microsoft.OpenApi.Writers;
 using System.Security.Claims;
 using MisticFy.Services;
+using Microsoft.AspNetCore.Authorization;
 
 [ApiController]
 [Route("[controller]")]
@@ -50,17 +47,17 @@ public class LoginController(IConfiguration configuration, IUserService _userSer
             var claims = new List<Claim>
             {
             new(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new(ClaimTypes.Email, user.Email),
-            new(ClaimTypes.AuthorizationDecision, user.AccessToken)
+            new(ClaimTypes.Email, user.Email)
             };
 
             var jwtToken = _token.GenerateAccessToken(claims, configuration);
-            Console.WriteLine($"Logged in as: {spotifyProfile.DisplayName}");
+
+            Console.WriteLine($"User {user.Name} logged in.");
             return Ok(new { Token = jwtToken });
         }
         catch (Exception ex)
         {
-            return BadRequest(new { Error = ex.Message });
+            return BadRequest(ex.Message);
         }
     }
 }

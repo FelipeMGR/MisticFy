@@ -26,6 +26,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "LoginController",
+    "Method": "GetCurrentUser",
+    "RelativePath": "Login/user",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "MisticFy.Controllers.MusicsController",
     "Method": "GetMusic",
     "RelativePath": "Musics/{musicName}",
@@ -34,26 +44,36 @@
     "Order": 0,
     "Parameters": [
       {
+        "Name": "token",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
         "Name": "musicName",
         "Type": "System.String",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "MisticFy.DTO.MusicDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "MisticFy.Controllers.PlaylistController",
     "Method": "UpdatePlaylist",
-    "RelativePath": "Playlist/{playlistId}/track",
+    "RelativePath": "Playlist/{playlistId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
-      {
-        "Name": "Authorization",
-        "Type": "System.String",
-        "IsRequired": false
-      },
       {
         "Name": "uris",
         "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
@@ -86,11 +106,6 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Authorization",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
         "Name": "userPlaylist",
         "Type": "System.String",
         "IsRequired": true
@@ -106,11 +121,6 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [
-      {
-        "Name": "Authorization",
-        "Type": "System.String",
-        "IsRequired": false
-      },
       {
         "Name": "playlist",
         "Type": "MisticFy.Models.Playlist",

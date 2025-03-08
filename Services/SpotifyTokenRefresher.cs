@@ -1,4 +1,3 @@
-using System;
 using SpotifyAPI.Web;
 
 namespace MisticFy.Services;

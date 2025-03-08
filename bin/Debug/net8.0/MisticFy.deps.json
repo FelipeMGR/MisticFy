@@ -9,9 +9,11 @@
       "MisticFy/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.13",
+          "Microsoft.AspNetCore.Authentication.OpenIdConnect": "8.0.13",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.12",
           "Microsoft.EntityFrameworkCore": "8.0.12",
           "Microsoft.EntityFrameworkCore.Design": "8.0.12",
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "8.6.0",
           "Pomelo.EntityFrameworkCore.MySql": "8.0.2",
           "SpotifyAPI.Web": "7.2.1",
           "SpotifyAPI.Web.Auth": "7.2.1",
@@ -43,10 +45,21 @@
       },
       "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.13": {
         "dependencies": {
-          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "7.1.2"
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "8.6.0"
         },
         "runtime": {
           "lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "assemblyVersion": "8.0.13.0",
+            "fileVersion": "8.0.1325.6610"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.OpenIdConnect/8.0.13": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "8.6.0"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll": {
             "assemblyVersion": "8.0.13.0",
             "fileVersion": "8.0.1325.6610"
           }
@@ -516,27 +529,26 @@
           }
         }
       },
-      "Microsoft.IdentityModel.Protocols/7.1.2": {
+      "Microsoft.IdentityModel.Protocols/8.6.0": {
         "dependencies": {
-          "Microsoft.IdentityModel.Logging": "8.6.0",
           "Microsoft.IdentityModel.Tokens": "8.6.0"
         },
         "runtime": {
           "lib/net8.0/Microsoft.IdentityModel.Protocols.dll": {
-            "assemblyVersion": "7.1.2.0",
-            "fileVersion": "7.1.2.41121"
+            "assemblyVersion": "8.6.0.0",
+            "fileVersion": "8.6.0.60222"
           }
         }
       },
-      "Microsoft.IdentityModel.Protocols.OpenIdConnect/7.1.2": {
+      "Microsoft.IdentityModel.Protocols.OpenIdConnect/8.6.0": {
         "dependencies": {
-          "Microsoft.IdentityModel.Protocols": "7.1.2",
+          "Microsoft.IdentityModel.Protocols": "8.6.0",
           "System.IdentityModel.Tokens.Jwt": "8.6.0"
         },
         "runtime": {
           "lib/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll": {
-            "assemblyVersion": "7.1.2.0",
-            "fileVersion": "7.1.2.41121"
+            "assemblyVersion": "8.6.0.0",
+            "fileVersion": "8.6.0.60222"
           }
         }
       },
@@ -803,6 +815,13 @@
       "path": "microsoft.aspnetcore.authentication.jwtbearer/8.0.13",
       "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.8.0.13.nupkg.sha512"
     },
+    "Microsoft.AspNetCore.Authentication.OpenIdConnect/8.0.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3KBSNoPyNuXzMPweojx9Em7mfDxxzYPwnmvs66vArHZYMOFWk0sAnVbqXKMQfijUwNaSl8hMG/Kvz3oy0/4SxA==",
+      "path": "microsoft.aspnetcore.authentication.openidconnect/8.0.13",
+      "hashPath": "microsoft.aspnetcore.authentication.openidconnect.8.0.13.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.Cryptography.Internal/8.0.12": {
       "type": "package",
       "serviceable": true,
@@ -1020,19 +1039,19 @@
       "path": "microsoft.identitymodel.logging/8.6.0",
       "hashPath": "microsoft.identitymodel.logging.8.6.0.nupkg.sha512"
     },
-    "Microsoft.IdentityModel.Protocols/7.1.2": {
+    "Microsoft.IdentityModel.Protocols/8.6.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-SydLwMRFx6EHPWJ+N6+MVaoArN1Htt92b935O3RUWPY1yUF63zEjvd3lBu79eWdZUwedP8TN2I5V9T3nackvIQ==",
-      "path": "microsoft.identitymodel.protocols/7.1.2",
-      "hashPath": "microsoft.identitymodel.protocols.7.1.2.nupkg.sha512"
+      "sha512": "sha512-pg1MDWuqpZPc0R3v7U/FC1CI788pjrhQWmyQAj1GfkfN77CAVN09ezi+/bBWY0wrJUpqV46SfZ2pDgj6PA4sPQ==",
+      "path": "microsoft.identitymodel.protocols/8.6.0",
+      "hashPath": "microsoft.identitymodel.protocols.8.6.0.nupkg.sha512"
     },
-    "Microsoft.IdentityModel.Protocols.OpenIdConnect/7.1.2": {
+    "Microsoft.IdentityModel.Protocols.OpenIdConnect/8.6.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6lHQoLXhnMQ42mGrfDkzbIOR3rzKM1W1tgTeMPLgLCqwwGw0d96xFi/UiX/fYsu7d6cD5MJiL3+4HuI8VU+sVQ==",
-      "path": "microsoft.identitymodel.protocols.openidconnect/7.1.2",
-      "hashPath": "microsoft.identitymodel.protocols.openidconnect.7.1.2.nupkg.sha512"
+      "sha512": "sha512-yOBmsgwGFsxeVW/ddJsuAoXl3m8NprDrRxJux6kIImP5cLStXDIhaaJvBfJopmzoct01g8/Niiw3BqJAh5alzA==",
+      "path": "microsoft.identitymodel.protocols.openidconnect/8.6.0",
+      "hashPath": "microsoft.identitymodel.protocols.openidconnect.8.6.0.nupkg.sha512"
     },
     "Microsoft.IdentityModel.Tokens/8.6.0": {
       "type": "package",
