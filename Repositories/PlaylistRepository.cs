@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MisticFy.DTO;
 using MisticFy.Models;
@@ -5,7 +6,7 @@ using SpotifyAPI.Web;
 
 namespace MisticFy.Repositories;
 
-public class PlaylistRepository : IPlaylistRepository
+public class PlaylistRepository(IMapper mapper) : IPlaylistRepository
 {
   public async Task<ActionResult<SpotifyPlaylistDTO>> CreatePlaylistAsync(string token, [FromBody] Playlist playlist)
   {
@@ -36,62 +37,18 @@ public class PlaylistRepository : IPlaylistRepository
     };
   }
 
-  public async Task<ActionResult<SpotifyPlaylistDTO>> GetUserPlaylistAsync(string token, string playlistId)
+  public async Task<ActionResult<SpotifyPlaylistDetailsDTO>> GetUserPlaylistAsync(string token, string playlistId)
   {
     var accessToken = token.Replace("Bearer ", "").Trim();
 
     var config = SpotifyClientConfig.CreateDefault().WithToken(accessToken);
     var spotify = new SpotifyClient(config);
 
-    var playlist = await spotify.Playlists.Get(playlistId);
+    var searchResult = await spotify.Playlists.Get(playlistId);
 
-    List<MusicDTO> playlistMusics = new List<MusicDTO>();
+    var playlist = mapper.Map<SpotifyPlaylistDetailsDTO>(searchResult);
 
-    if (playlist?.Tracks?.Items != null)
-    {
-      foreach (var item in playlist.Tracks.Items)
-      {
-        if (item.Track is FullTrack track)
-        {
-          playlistMusics.Add(new MusicDTO
-          {
-            Name = track.Name,
-            Artists = [.. track.Artists.Select(a => new SpotifyArtistDTO
-            {
-              Name = a.Name
-            })],
-            Album = new SpotifyAlbumDTO
-            {
-              Name = track.Album.Name,
-              Images = [.. track.Album.Images.Select(i => new SpotifyImageDTO
-              {
-                Url = i.Url
-              })]
-            }
-          });
-        }
-      }
-    }
-
-    return new SpotifyPlaylistDTO
-    {
-      Name = playlist?.Name,
-      Description = playlist?.Description,
-      Owner = new SpotifyUserDTO
-      {
-        DisplayName = playlist?.Owner.DisplayName
-      },
-      Musics = playlistMusics.Select(m => new MusicDTO
-      {
-        Name = m.Name,
-        Artists = m.Artists.Select(a => new SpotifyArtistDTO { Name = a.Name }).ToList(),
-        Album = new SpotifyAlbumDTO
-        {
-          Name = m.Album.Name,
-          Images = m.Album.Images.Select(i => new SpotifyImageDTO { Url = i.Url }).ToList()
-        }
-      }).ToList()
-    };
+    return playlist;
   }
 
   public async Task<ActionResult<SpotifyPlaylistDTO>> AddSongToPlaylist(string token, [FromBody] List<string> uris, string playlistId)
