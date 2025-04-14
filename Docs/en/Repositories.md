@@ -9,30 +9,34 @@ The repository that we use to control the methods for the PlaylistController imp
 ### Creating playlists
 
 ```csharp
-      public async Task<ActionResult<Playlist>> CreatePlaylistAsync(string token, [FromBody] Playlist playlist)
+      public async Task<ActionResult<SpotifyPlaylistDTO>> CreatePlaylistAsync(string token, [FromBody] Playlist playlist)
+      {
+        var acessToken = token.Replace("Bearer ", "");
+
+        var config = SpotifyClientConfig.CreateDefault();
+        var spotify = new SpotifyClient(config.WithToken(acessToken));
+
+        var currentUser = await spotify.UserProfile.Current();
+        string userId = currentUser.Id;
+
+        var newPlayList = await spotify.Playlists.Create(userId, new PlaylistCreateRequest(playlist.Name)
         {
-          var acessToken = token.Replace("Bearer ", "");
 
-          var config = SpotifyClientConfig.CreateDefault();
-          var spotify = new SpotifyClient(config.WithToken(acessToken));
+          Description = playlist.Description,
+          Public = playlist.IsPublic
+        });
 
-          var currentUser = await spotify.UserProfile.Current();
-          string userId = currentUser.Id;
-
-          var newPlayList = await spotify.Playlists.Create(userId, new PlaylistCreateRequest(playlist.Name)
+        return new SpotifyPlaylistDTO
+        {
+          Name = newPlayList.Name,
+          Description = newPlayList.Description,
+          Owner = new SpotifyUserDTO
           {
-
-            Description = playlist.Description,
-            Public = playlist.IsPublic
-          });
-
-          return new Playlist
-          {
-            Name = newPlayList.Name,
-            Description = newPlayList.Description,
-            Musics = []
-          };
-        }
+            DisplayName = newPlayList.Owner.DisplayName
+          },
+          Musics = []
+        };
+      } 
 ```
 
 Here we take two arguments, one being the token (AccessToken) and, on the body, we receive the info that should be present on the new playlist.
@@ -68,53 +72,80 @@ Here we take two arguments, one being the token (AccessToken) and, on the body, 
 
 ```csharp
 var newPlayList = await spotify.Playlists.Create(userId, new PlaylistCreateRequest(playlist.Name)
-          {
-            Description = playlist.Description,
-            Public = playlist.IsPublic
-          });
+        {
 
-          return new Playlist
+          Description = playlist.Description,
+          Public = playlist.IsPublic
+        });
+
+        return new SpotifyPlaylistDTO
+        {
+          Name = newPlayList.Name,
+          Description = newPlayList.Description,
+          Owner = new SpotifyUserDTO
           {
-            Name = newPlayList.Name,
-            Description = newPlayList.Description,
-            Musics = []
-          };
+            DisplayName = newPlayList.Owner.DisplayName
+          },
+          Musics = []
+        };
 ```
 
 > Using the instance we created before for the SpotifyClient, we call the SpotifyWebAPI "Create" method, to create the playlist. This method uses 2 arguments to operate, one being the userId (that we got before), and a instance of the PlaylistCreateRequest, wich receives the playlist's name argument (that we get from the body request).
 
-After using this method on the controller, you'll be able to create a new playlist.
+After using this method on the controller, you'll be able to create a new playlist. The return type will be a SpotifyPlaylistDTO, wich will be explained in the DTO section.
 
 ### Adding a new song to a existing playlist
 
 ```csharp
-      public async Task<ActionResult<Playlist>> AddSongToPlaylist(string token, [FromBody] List<string> uris, string playlistId)
+      public async Task<ActionResult<SpotifyPlaylistDTO>> AddSongToPlaylist(string token, [FromBody] List<string> uris, string playlistId)
+  {
+    var acessToken = token.Replace("Bearer ", "").Trim();
+
+    var config = SpotifyClientConfig.CreateDefault().WithToken(acessToken);
+    var spotify = new SpotifyClient(config);
+    var updateRequest = new PlaylistAddItemsRequest(uris);
+
+    var result = await spotify.Playlists.AddItems(playlistId, updateRequest);
+
+    var updatedPlaylist = await spotify.Playlists.Get(playlistId);
+
+    var musics = new List<MusicDTO>();
+
+    if (updatedPlaylist?.Tracks?.Items != null)
+    {
+      foreach (var item in updatedPlaylist.Tracks.Items)
+      {
+        if (item.Track is FullTrack track)
         {
-          var acessToken = token.Replace("Bearer ", "").Trim();
-
-          var config = SpotifyClientConfig.CreateDefault().WithToken(acessToken);
-          var spotify = new SpotifyClient(config);
-          var updateRequest = new PlaylistAddItemsRequest(uris);
-
-          var result = await spotify.Playlists.AddItems(playlistId, updateRequest);
-
-          var updatedPlaylist = await spotify.Playlists.Get(playlistId);
-
-          var musics = updatedPlaylist?.Tracks?.Items
-                          .Where(item => item.Track is FullTrack)
-                          .Select(m => new Music
-                          {
-                            MusicName = ((FullTrack)m.Track).Name
-                          })
-                          .ToList();
-
-
-          return new Playlist
+          musics.Add(new MusicDTO
           {
-            Name = updatedPlaylist.Name,
-            Musics = musics
-          };
+            Name = track.Name,
+            Artists = track.Artists.Select(a => new SpotifyArtistDTO
+            {
+              Name = a.Name
+            }).ToList(),
+            Album = new SpotifyAlbumDTO
+            {
+              Name = track.Album.Name,
+              Images = track.Album.Images.Select(i => new SpotifyImageDTO
+              {
+                Url = i.Url
+              }).ToList()
+            }
+          });
         }
+      }
+    }
+    return new SpotifyPlaylistDTO
+    {
+      Name = updatedPlaylist.Name,
+      Owner = new SpotifyUserDTO
+      {
+        DisplayName = updatedPlaylist.Owner.DisplayName
+      },
+      Musics = musics
+    };
+  }
 ```
 
 In this method, we take 3 arguments, wich are: token (AcessToken), uris (the song's URI's) and the playlistId.
@@ -158,77 +189,84 @@ After creating the instance of __PlaylistAddItemsRequest__, we call the SpotifyC
 Finally, after updating the playlist, we can return it. In order to return the playlists, we need to get the songs contained in it. For that, we use the following block of code: 
 
 ```csharp
-var musics = updatedPlaylist?.Tracks?.Items
-                          .Where(item => item.Track is FullTrack)
-                          .Select(m => new Music
-                          {
-                            MusicName = ((FullTrack)m.Track).Name
-                          })
-                          .ToList();
+if (updatedPlaylist?.Tracks?.Items != null)
+    {
+      foreach (var item in updatedPlaylist.Tracks.Items)
+      {
+        if (item.Track is FullTrack track)
+        {
+          musics.Add(new MusicDTO
+          {
+            Name = track.Name,
+            Artists = track.Artists.Select(a => new SpotifyArtistDTO
+            {
+              Name = a.Name
+            }).ToList(),
+            Album = new SpotifyAlbumDTO
+            {
+              Name = track.Album.Name,
+              Images = track.Album.Images.Select(i => new SpotifyImageDTO
+              {
+                Url = i.Url
+              }).ToList()
+            }
+          });
+        }
+      }
+    }
 ```
-Here, we're using the updatedPlaylist variable, then getting the tracks contained in it and finally the items. We filter it to just get the items that are __FullTrack__* type. For every __FullTrack__ type that we encounter, a new instance of the Music model will be created.
+Here, we're doing a validation before anything else, we are checking if there's any *null* value contained on the playlist that it's been returned. Then, if the Item is not null, we can procced to the iteration part, where we iterate through all the track itemns on the list, and add them to the __musics__ variable. In order to store songs only, we are using another validation to check if that item is a __FullTrack__ one. If it is, we add it to the list.
+
+Every song that is been added has it's own info, such as name, artists and album. All those info are stored as well, but not everything, and that's why we use the DTO, to filter what will be visible for the user, and what will not.
 
 ```csharp
-return new Playlist
-          {
-            Name = updatedPlaylist.Name,
-            Musics = musics
-          };
+return new SpotifyPlaylistDTO
+    {
+      Name = updatedPlaylist.Name,
+      Owner = new SpotifyUserDTO
+      {
+        DisplayName = updatedPlaylist.Owner.DisplayName
+      },
+      Musics = musics
+    };
 ```
 
-After getting all the playlist items, we can now return it to the user. Here we're returning the playlist's name, and a list of Musics.
+After getting all the playlist items, we can now return it to the user. The return type will be the SpotifyPlaylistDTO, wich will be explained in the DTO section.
 
 ### Getting the user's playlist by it's Id
 
 It's possible to retrieve the user's playlist using the playlist id. For that, we use the following code: 
 
 ```csharp
-public async Task<ActionResult<Playlist>> GetUserPlaylistAsync(string token, string playlistId)
+public async Task<ActionResult<SpotifyPlaylistDetailsDTO>> GetUserPlaylistAsync(string token, string playlistId)
   {
-    var acessToken = token.Replace("Bearer ", "").Trim();
+    var accessToken = token.Replace("Bearer ", "").Trim();
 
-    var config = SpotifyClientConfig.CreateDefault().WithToken(acessToken);
-    var client = new SpotifyClient(config);
+    var config = SpotifyClientConfig.CreateDefault().WithToken(accessToken);
+    var spotify = new SpotifyClient(config);
 
-    var playlist = await client.Playlists.Get(playlistId);
+    var searchResult = await spotify.Playlists.Get(playlistId);
 
-    List<Music> playlistMusics = new List<Music>();
+    var playlist = mapper.Map<SpotifyPlaylistDetailsDTO>(searchResult);
 
-    if (playlist?.Tracks?.Items != null)
-    {
-      foreach (var item in playlist.Tracks.Items)
-      {
-        if (item.Track is FullTrack track)
-        {
-          playlistMusics.Add(new Music
-          {
-            MusicName = track.Name
-          });
-        }
-      }
-    }
-
-    return new Playlist
-    {
-      Name = playlist?.Name,
-      Description = playlist?.Description,
-      Musics = playlistMusics
-    };
+    return playlist;
   }
 ```
 #### Step-by-Step
 1. Getting the token
 ```csharp 
- var acessToken = token.Replace("Bearer ", "");
+  var acessToken = token.Replace("Bearer ", "");
   var config = SpotifyClientConfig.CreateDefault();
-    var spotify = new SpotifyClient(config.WithToken(acessToken));
+  var spotify = new SpotifyClient(config.WithToken(acessToken));
 ```
 
 2. Getting the SpotifyClient
 
 ```csharp
+
   var config = SpotifyClientConfig.CreateDefault();
-    var spotify = new SpotifyClient(config.WithToken(acessToken));
+  var spotify = new SpotifyClient(config.WithToken(acessToken));
+
 ```
 > The token is used to create a instance of SpotifyClient, wich is "stored" in the __spotify__ variable. This instance is used to manage playlist, and user related actions.
 
@@ -236,49 +274,22 @@ public async Task<ActionResult<Playlist>> GetUserPlaylistAsync(string token, str
 
 In order to fetch the playlist, we use the following line of code: 
 ```csharp
-var playlist = await spotify.Playlists.Get(playlistId);
-```
 
+var searchResult = await spotify.Playlists.Get(playlistId);
+
+```
 We use the SpotifyClient instance, then call the Playlist extension followed by the Get method. As always, this method receives one argument, wich is the playlist Id.
 
-4. Instanciating the playlist
+4. Returning the playlist
 
-To be able to return the playlist to the user, we need to store it somewhere first. To do that, we can instantiate a new List (Playlists, as the same suggests, is a List of songs) and add the playlist songs to it. The logic for that would be the following:
-
-```csharp
-List<Music> playlistMusics = new List<Music>();
-
-```
-First, we create the new List, wich is empty. After that, we iterate through the playlist we got with the Get method
+Now, after getting the user's playlist, we can return it. For that, we'll use the AutoMApper function, to map all the properties that we currently hold to a DTO, wich will filter the data that the user will be able to see.
 
 ```csharp
-    if (playlist?.Tracks?.Items != null) // verifies if there's any null value in the array
-    {
-      foreach (var item in playlist.Tracks.Items)
-      {
-        if (item.Track is FullTrack track)
-        {
-          playlistMusics.Add(new Music
-          {
-            MusicName = track.Name // for every FullTrack type item, we'll add it to our playlistMusic variable
-          });
-        }
-      }
-    }
-```
-5. Returning the playlist
 
-Finaly, after iterating through the array, we can now return the playlist for our user.
+var playlist = mapper.Map<SpotifyPlaylistDetailsDTO>(searchResult);
 
-```csharp
-return new Playlist
-    {
-      Name = playlist?.Name,
-      Description = playlist?.Description,
-      Musics = playlistMusics
-    };
+return playlist;
 ```
-##### Important: we do not return the playlist with Musics = playlist.??? because there's not a method that returns all the playlist songs within a FullPlaylist type variable.
 
 ## MusicRepository
 
