@@ -51,7 +51,7 @@ public class TokenService : ITokenService
       ValidateIssuer = false,
       ValidateIssuerSigningKey = true,
       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
-      ValidateLifetime = false
+      ValidateLifetime = true
     };
 
     var tokenHandler = new JwtSecurityTokenHandler();

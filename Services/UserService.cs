@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MisticFy.Context;
 using MisticFy.Models;
@@ -47,4 +48,20 @@ public class UserService(AppDbContext db) : IUserService
   {
     return await _db.Users.FirstOrDefaultAsync(x => x.Id == userId);
   }
+
+    public async Task<ActionResult<Users>> VerifyUser(string userID)
+    {
+        if (string.IsNullOrEmpty(userID))
+        {
+            return new BadRequestResult();
+        }
+
+        var user = await GetUserByIdAsync(int.Parse(userID));
+        if (user == null || string.IsNullOrEmpty(user.AccessToken))
+        {
+            return new UnauthorizedResult();
+        }
+
+        return new OkObjectResult(user);
+    }
 }

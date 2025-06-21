@@ -2,18 +2,18 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MisticFy.DTO;
 using MisticFy.Models;
+using MisticFy.Services;
 using SpotifyAPI.Web;
 
 namespace MisticFy.Repositories;
 
-public class PlaylistRepository(IMapper mapper) : IPlaylistRepository
+public class PlaylistRepository(IMapper mapper, ISpotifyService _spotify) : IPlaylistRepository
 {
+    private readonly ISpotifyService spotifyService = _spotify;
+
   public async Task<ActionResult<SpotifyPlaylistDTO>> CreatePlaylistAsync(string token, [FromBody] Playlist playlist)
   {
-    var acessToken = token.Replace("Bearer ", "");
-
-    var config = SpotifyClientConfig.CreateDefault();
-    var spotify = new SpotifyClient(config.WithToken(acessToken));
+    SpotifyClient spotify = spotifyService.GetSpotifyClient(token);
 
     var currentUser = await spotify.UserProfile.Current();
     string userId = currentUser.Id;
@@ -39,65 +39,60 @@ public class PlaylistRepository(IMapper mapper) : IPlaylistRepository
 
   public async Task<ActionResult<SpotifyPlaylistDetailsDTO>> GetUserPlaylistAsync(string token, string playlistId)
   {
-    var accessToken = token.Replace("Bearer ", "").Trim();
+        SpotifyClient spotify = spotifyService.GetSpotifyClient(token);
 
-    var config = SpotifyClientConfig.CreateDefault().WithToken(accessToken);
-    var spotify = new SpotifyClient(config);
+        FullPlaylist searchResult = await spotify.Playlists.Get(playlistId);
 
-    var searchResult = await spotify.Playlists.Get(playlistId);
+        var playlist = mapper.Map<SpotifyPlaylistDetailsDTO>(searchResult);
 
-    var playlist = mapper.Map<SpotifyPlaylistDetailsDTO>(searchResult);
-
-    return playlist;
+        return playlist;
   }
 
   public async Task<ActionResult<SpotifyPlaylistDTO>> AddSongToPlaylist(string token, [FromBody] List<string> uris, string playlistId)
   {
-    var acessToken = token.Replace("Bearer ", "").Trim();
+        SpotifyClient spotify = spotifyService.GetSpotifyClient(token);
 
-    var config = SpotifyClientConfig.CreateDefault().WithToken(acessToken);
-    var spotify = new SpotifyClient(config);
-    var updateRequest = new PlaylistAddItemsRequest(uris);
+        PlaylistAddItemsRequest updateRequest = new PlaylistAddItemsRequest(uris);
 
-    var result = await spotify.Playlists.AddItems(playlistId, updateRequest);
+        SnapshotResponse result = await spotify.Playlists.AddItems(playlistId, updateRequest);
 
-    var updatedPlaylist = await spotify.Playlists.Get(playlistId);
+        FullPlaylist updatedPlaylist = await spotify.Playlists.Get(playlistId);
 
-    var musics = new List<MusicDTO>();
+        var musics = new List<MusicDTO>();
 
-    if (updatedPlaylist?.Tracks?.Items != null)
-    {
-      foreach (var item in updatedPlaylist.Tracks.Items)
-      {
-        if (item.Track is FullTrack track)
+        if (updatedPlaylist?.Tracks?.Items != null)
         {
-          musics.Add(new MusicDTO
+          foreach (var item in updatedPlaylist.Tracks.Items)
           {
-            Name = track.Name,
-            Artists = track.Artists.Select(a => new SpotifyArtistDTO
+            if (item.Track is FullTrack track)
             {
-              Name = a.Name
-            }).ToList(),
-            Album = new SpotifyAlbumDTO
-            {
-              Name = track.Album.Name,
-              Images = track.Album.Images.Select(i => new SpotifyImageDTO
+              musics.Add(new MusicDTO
               {
-                Url = i.Url
-              }).ToList()
+                Name = track.Name,
+                Artists = track.Artists.Select(a => new SpotifyArtistDTO
+                {
+                  Name = a.Name
+                }).ToList(),
+                Album = new SpotifyAlbumDTO
+                {
+                  Name = track.Album.Name,
+                  Images = track.Album.Images.Select(i => new SpotifyImageDTO
+                  {
+                    Url = i.Url
+                  }).ToList()
+                }
+              });
             }
-          });
+          }
         }
-      }
-    }
-    return new SpotifyPlaylistDTO
-    {
-      Name = updatedPlaylist.Name,
-      Owner = new SpotifyUserDTO
-      {
-        DisplayName = updatedPlaylist.Owner.DisplayName
-      },
-      Musics = musics
-    };
+        return new SpotifyPlaylistDTO
+        {
+          Name = updatedPlaylist.Name,
+          Owner = new SpotifyUserDTO
+          {
+            DisplayName = updatedPlaylist.Owner.DisplayName
+          },
+          Musics = musics
+        };
   }
 }

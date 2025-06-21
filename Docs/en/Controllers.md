@@ -53,25 +53,23 @@
 
  Most of the method used on these endpoints are being called from the PlaylistRepository, wich will be presented later on.
 
+ #### Note: 
+
+    All endpoins will have the VerifyUser method being called. This method allow us to validate if the current user exists, and if he's authenticated.
+
 ```csharp
     [HttpGet("{userPlaylist}")]
     [Authorize]
     public async Task<ActionResult> GetPlaylistAsyc([FromRoute] string userPlaylist)
     {
-        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        if (string.IsNullOrEmpty(userId))
-        {
-            return Unauthorized("User not authenticated.");
-        }
 
-        var user = await _userService.GetUserByIdAsync(int.Parse(userId));
-        if (user == null || string.IsNullOrEmpty(user.AccessToken))
-        {
-            return Unauthorized("User not found or access token missing.");
-        }
+       var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-        var playlist = await _playlist.GetUserPlaylistAsync(user.AccessToken, userPlaylist);
-        return Ok(playlist);
+       var user = await _userService.VerifyUser(userId);
+
+       var playlist = await _playlist.GetUserPlaylistAsync(user.Value.AccessToken, userPlaylist);
+       return Ok(playlist);
+
     }
 ```
 
@@ -87,18 +85,10 @@
         public async Task<ActionResult> CreatePlaylistAsync([FromBody] Playlist playlist)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (string.IsNullOrEmpty(userId))
-            {
-                return Unauthorized("User not authenticated.");
-            }
 
-            var user = await _userService.GetUserByIdAsync(int.Parse(userId));
-            if (user == null || string.IsNullOrEmpty(user.AccessToken))
-            {
-                return Unauthorized("User not found or access token missing.");
-            }
+            var user = await _userService.VerifyUser(userId);
 
-            var userPlaylist = await _playlist.CreatePlaylistAsync(user.AccessToken, playlist);
+            var userPlaylist = await _playlist.CreatePlaylistAsync(user.Value.AccessToken, playlist);
 
             return Ok(userPlaylist);
         }
@@ -116,18 +106,10 @@
         public async Task<ActionResult<Playlist>> UpdatePlaylist([FromBody] List<string> uris, string playlistId)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (string.IsNullOrEmpty(userId))
-            {
-                return Unauthorized("User not authenticated.");
-            }
 
-            var user = await _userService.GetUserByIdAsync(int.Parse(userId));
-            if (user == null || string.IsNullOrEmpty(user.AccessToken))
-            {
-                return Unauthorized("User not found or access token missing.");
-            }
+            var user = await _userService.VerifyUser(userId);
 
-            var playlist = await _playlist.AddSongToPlaylist(user.AccessToken, uris, playlistId);
+            var playlist = await _playlist.AddSongToPlaylist(user.Value.AccessToken, uris, playlistId);
             return Ok(playlist);
         }
 ```
@@ -135,4 +117,4 @@
  Here we receive the songs the user wants to add to the playlist (their spotify id, wich would be something like: "spotify:track:7MXVkk9YMctZqd1Srtv4MB"), and the playlist ID that they want to update.
 
 ## Important:
- _every endpoint check for any nullable value for both the user identification and their acess token. If one of them is null/invalid, a excpetion is throwed._
+ Every endpoint check for any nullable value for both the user identification and their acess token. If one of them is null/invalid, a excpetion is throwed._

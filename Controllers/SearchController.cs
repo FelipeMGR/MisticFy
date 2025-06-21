@@ -14,10 +14,7 @@ namespace MisticFy.Controllers
     {
         [HttpGet]
         [Authorize]
-        public async Task<ActionResult> Search(
-        [FromQuery] string query,
-        [FromQuery] SearchRequest.Types types,
-        [FromQuery] int limit = 10)
+        public async Task<ActionResult> Search([FromQuery] string query, [FromQuery] SearchRequest.Types types, [FromQuery] int limit = 10)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (string.IsNullOrEmpty(userId))

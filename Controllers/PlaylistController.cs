@@ -19,18 +19,10 @@ namespace MisticFy.Controllers
         public async Task<ActionResult> GetPlaylistAsyc([FromRoute] string userPlaylist)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (string.IsNullOrEmpty(userId))
-            {
-                return Unauthorized("User not authenticated.");
-            }
 
-            var user = await _userService.GetUserByIdAsync(int.Parse(userId));
-            if (user == null || string.IsNullOrEmpty(user.AccessToken))
-            {
-                return Unauthorized("User not found.");
-            }
+            var user = await _userService.VerifyUser(userId);
 
-            var playlist = await _playlist.GetUserPlaylistAsync(user.AccessToken, userPlaylist);
+            var playlist = await _playlist.GetUserPlaylistAsync(user.Value.AccessToken, userPlaylist);
             return Ok(playlist);
 
         }
@@ -40,18 +32,10 @@ namespace MisticFy.Controllers
         public async Task<ActionResult<Playlist>> UpdatePlaylist([FromBody] List<string> uris, string playlistId)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (string.IsNullOrEmpty(userId))
-            {
-                return Unauthorized("User not authenticated.");
-            }
 
-            var user = await _userService.GetUserByIdAsync(int.Parse(userId));
-            if (user == null || string.IsNullOrEmpty(user.AccessToken))
-            {
-                return Unauthorized("User not found or access token missing.");
-            }
+            var user = await _userService.VerifyUser(userId);
 
-            var playlist = await _playlist.AddSongToPlaylist(user.AccessToken, uris, playlistId);
+            var playlist = await _playlist.AddSongToPlaylist(user.Value.AccessToken, uris, playlistId);
             return Ok(playlist);
         }
 
@@ -60,18 +44,10 @@ namespace MisticFy.Controllers
         public async Task<ActionResult> CreatePlaylistAsync([FromBody] Playlist playlist)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (string.IsNullOrEmpty(userId))
-            {
-                return Unauthorized("User not authenticated.");
-            }
 
-            var user = await _userService.GetUserByIdAsync(int.Parse(userId));
-            if (user == null || string.IsNullOrEmpty(user.AccessToken))
-            {
-                return Unauthorized("User not found or access token missing.");
-            }
+            var user = await _userService.VerifyUser(userId);
 
-            var userPlaylist = await _playlist.CreatePlaylistAsync(user.AccessToken, playlist);
+            var userPlaylist = await _playlist.CreatePlaylistAsync(user.Value.AccessToken, playlist);
 
             return Ok(userPlaylist);
         }
