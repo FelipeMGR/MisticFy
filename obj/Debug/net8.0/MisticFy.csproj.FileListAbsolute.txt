@@ -131,3 +131,7 @@ C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\Microsoft.Id
 C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
 C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\AutoMapper.dll
+C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\src\Properties\launchSettings.json
+C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\bin\Debug\net8.0\MisticFy.staticwebassets.endpoints.json
+C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\felip\OneDrive\Documents\MusicFy\MisticFy\obj\Debug\net8.0\staticwebassets\msbuild.MisticFy.Microsoft.AspNetCore.StaticWebAssetEndpoints.props

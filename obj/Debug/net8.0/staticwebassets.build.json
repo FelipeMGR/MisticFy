@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "j5FxmsfWRawJQP2vX9ims9GdjAVeBoVZ2kacIgmxc0E=",
+  "Hash": "Wdz9HFcj/JAcvw1jqI4Ws4fel4KWI8yx5zbpAZGt4yg=",
   "Source": "MisticFy",
   "BasePath": "_content/MisticFy",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }
