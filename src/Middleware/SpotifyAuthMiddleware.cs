@@ -1,20 +1,15 @@
 using System.Security.Claims;
 using MisticFy.Context;
-using MisticFy.Services;
+using MisticFy.src.Services;
 using SpotifyAPI.Web;
 
-namespace MisticFy.Middleware;
+namespace MisticFy.src.Middleware;
 
-public class SpotifyAuthMiddleware
+public class SpotifyAuthMiddleware(RequestDelegate next)
 {
-  private readonly RequestDelegate _next;
+  private readonly RequestDelegate _next = next;
 
-  public SpotifyAuthMiddleware(RequestDelegate next)
-  {
-    _next = next;
-  }
-
-  public async Task InvokeAsync(HttpContext context, AppDbContext db, SpotifyTokenRefresher tokenRefresher)
+    public async Task InvokeAsync(HttpContext context, AppDbContext db, ISpotifyTokenRefresher tokenRefresher)
   {
     var userId = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
@@ -31,8 +26,7 @@ public class SpotifyAuthMiddleware
           await db.SaveChangesAsync();
         }
 
-        var spotify = new SpotifyClient(user.AccessToken);
-        context.Items["SpotifyClient"] = spotify;
+         context.Items["SpotifyAccessToken"] = user?.AccessToken;
       }
     }
 

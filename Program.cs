@@ -1,19 +1,55 @@
 using SpotifyAPI.Web;
 using MisticFy.Repositories;
 using MisticFy.Context;
+using MisticFy.src.Middleware;
+using MisticFy.DTO;
+using MisticFy.src.Services;
 using Microsoft.EntityFrameworkCore;
 using MisticFy.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using System.Reflection;
-using MisticFy.DTO;
+using Scalar.AspNetCore;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("MistFy_v1", new OpenApiInfo { Title = "MisticFy", Version = "v1" });
+
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "Insira o token JWT no formato: Bearer {seu_token}",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
+
+
+builder.Services.AddControllers(); 
+builder.Services.AddHttpContextAccessor();
 builder.Configuration.AddJsonFile("appsettings.Development.json");
 builder.Services.AddAutoMapper(typeof(SpotifyProfile));
 builder.Services.AddScoped<IPlaylistRepository, PlaylistRepository>();
@@ -47,16 +83,6 @@ builder.Services.AddAuthentication(options =>
 }
 );
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AngularClient", policy =>
-    {
-        policy.WithOrigins("http://localhost:4200")
-              .AllowAnyHeader()
-              .AllowAnyMethod().AllowCredentials();
-    });
-});
-
 
 builder.Services.AddTransient<SpotifyClient>(sp =>
 {
@@ -81,10 +107,32 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 builder.Services.AddEndpointsApiExplorer();
 
-var app = builder.Build();
-app.UseCors("AngularClient");
-app.UseAuthentication();
-app.UseAuthorization();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSwaggerUI", policy =>
+    {
+        policy.WithOrigins("http://localhost:5092")
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+});
 
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapScalarApiReference();
+    app.UseSwagger(options =>
+    {
+        options.RouteTemplate = "swagger/{documentName}/swagger.json";
+    });
+    app.UseSwaggerUI(c => {
+        c.SwaggerEndpoint("swagger/MistFy_v1/swagger.json", "MistFy_v1");
+    });
+}
+app.UseCors();
+app.UseAuthentication();
+app.UseMiddleware<SpotifyAuthMiddleware>();
+app.UseAuthorization();
 app.MapControllers();
 app.Run();

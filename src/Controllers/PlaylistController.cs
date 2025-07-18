@@ -5,7 +5,7 @@ using MisticFy.Models;
 using MisticFy.Repositories;
 using MisticFy.Services;
 
-namespace MisticFy.Controllers
+namespace MisticFy.src.Controllers
 {
     [Route("[controller]")]
     [ApiController]
@@ -14,40 +14,29 @@ namespace MisticFy.Controllers
 
         private readonly IPlaylistRepository _playlist = playlist;
 
-        [HttpGet("{userPlaylist}")]
+        [HttpGet("userPlaylist")]
         [Authorize]
-        public async Task<ActionResult> GetPlaylistAsyc([FromRoute] string userPlaylist)
+        public async Task<ActionResult> GetPlaylistAsyc(string userPlaylist)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var playlist = await _playlist.GetUserPlaylistAsync(userPlaylist);
 
-            var user = await _userService.VerifyUser(userId);
-
-            var playlist = await _playlist.GetUserPlaylistAsync(user.Value.AccessToken, userPlaylist);
             return Ok(playlist);
-
         }
 
-        [HttpPost("{playlistId}")]
+        [HttpPut("AddSongToPlaylist")]
         [Authorize]
         public async Task<ActionResult<Playlist>> UpdatePlaylist([FromBody] List<string> uris, string playlistId)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var playlist = await _playlist.AddSongToPlaylist(uris, playlistId);
 
-            var user = await _userService.VerifyUser(userId);
-
-            var playlist = await _playlist.AddSongToPlaylist(user.Value.AccessToken, uris, playlistId);
             return Ok(playlist);
         }
 
-        [HttpPost("createPlaylist")]
+        [HttpPost("CreatePlaylist")]
         [Authorize]
         public async Task<ActionResult> CreatePlaylistAsync([FromBody] Playlist playlist)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            var user = await _userService.VerifyUser(userId);
-
-            var userPlaylist = await _playlist.CreatePlaylistAsync(user.Value.AccessToken, playlist);
+            var userPlaylist = await _playlist.CreatePlaylistAsync(playlist);
 
             return Ok(userPlaylist);
         }

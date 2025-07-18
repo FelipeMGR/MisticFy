@@ -15,6 +15,4 @@ public interface IUserService
     );
 
   Task<Users> GetUserByIdAsync(int userId);
-
-  Task<ActionResult<Users>> VerifyUser(string userId);  
 }

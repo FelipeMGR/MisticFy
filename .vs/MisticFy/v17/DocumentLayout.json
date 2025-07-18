@@ -1,22 +1,38 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\felip\\OneDrive\\Documents\\MusicFy\\MisticFy\\",
+  "WorkspaceRootPath": "C:\\Users\\felip\\Documents\\Projetos\\MisticFy\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|c:\\users\\felip\\onedrive\\documents\\musicfy\\misticfy\\docs\\en\\controllers.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
-      "RelativeMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|solutionrelative:docs\\en\\controllers.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+      "AbsoluteMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|c:\\users\\felip\\documents\\projetos\\misticfy\\src\\controllers\\playlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|solutionrelative:src\\controllers\\playlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|c:\\users\\felip\\onedrive\\documents\\musicfy\\misticfy\\controllers\\playlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|solutionrelative:controllers\\playlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|c:\\users\\felip\\documents\\projetos\\misticfy\\src\\controllers\\searchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|solutionrelative:src\\controllers\\searchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|c:\\users\\felip\\onedrive\\documents\\musicfy\\misticfy\\repositories\\playlistrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|solutionrelative:repositories\\playlistrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|c:\\users\\felip\\documents\\projetos\\misticfy\\src\\repositories\\playlistrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|solutionrelative:src\\repositories\\playlistrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|c:\\users\\felip\\onedrive\\documents\\musicfy\\misticfy\\services\\ispotifyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|solutionrelative:services\\ispotifyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|c:\\users\\felip\\documents\\projetos\\misticfy\\src\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|solutionrelative:src\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|c:\\users\\felip\\documents\\projetos\\misticfy\\src\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|solutionrelative:src\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|c:\\users\\felip\\documents\\projetos\\misticfy\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|c:\\users\\felip\\documents\\projetos\\misticfy\\src\\repositories\\iplaylistrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|solutionrelative:src\\repositories\\iplaylistrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|c:\\users\\felip\\documents\\projetos\\misticfy\\src\\middleware\\spotifyauthmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D35A69B7-AEBD-BC4A-A765-60502E7B527D}|MisticFy.csproj|solutionrelative:src\\middleware\\spotifyauthmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,21 +42,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 11,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Controllers.md",
-              "DocumentMoniker": "C:\\Users\\felip\\OneDrive\\Documents\\MusicFy\\MisticFy\\Docs\\en\\Controllers.md",
-              "RelativeDocumentMoniker": "Docs\\en\\Controllers.md",
-              "ToolTip": "C:\\Users\\felip\\OneDrive\\Documents\\MusicFy\\MisticFy\\Docs\\en\\Controllers.md",
-              "RelativeToolTip": "Docs\\en\\Controllers.md",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAADgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2025-06-21T17:58:18.407Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
@@ -60,40 +63,105 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PlaylistController.cs",
-              "DocumentMoniker": "C:\\Users\\felip\\OneDrive\\Documents\\MusicFy\\MisticFy\\Controllers\\PlaylistController.cs",
-              "RelativeDocumentMoniker": "Controllers\\PlaylistController.cs",
-              "ToolTip": "C:\\Users\\felip\\OneDrive\\Documents\\MusicFy\\MisticFy\\Controllers\\PlaylistController.cs",
-              "RelativeToolTip": "Controllers\\PlaylistController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAxwC0AAAAAAAAAAAAAAA==",
+              "Title": "SearchController.cs",
+              "DocumentMoniker": "C:\\Users\\felip\\Documents\\Projetos\\MisticFy\\src\\Controllers\\SearchController.cs",
+              "RelativeDocumentMoniker": "src\\Controllers\\SearchController.cs",
+              "ToolTip": "C:\\Users\\felip\\Documents\\Projetos\\MisticFy\\src\\Controllers\\SearchController.cs",
+              "RelativeToolTip": "src\\Controllers\\SearchController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-21T17:30:42.227Z",
+              "WhenOpened": "2025-07-18T00:06:44.563Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ISpotifyService.cs",
-              "DocumentMoniker": "C:\\Users\\felip\\OneDrive\\Documents\\MusicFy\\MisticFy\\Services\\ISpotifyService.cs",
-              "RelativeDocumentMoniker": "Services\\ISpotifyService.cs",
-              "ToolTip": "C:\\Users\\felip\\OneDrive\\Documents\\MusicFy\\MisticFy\\Services\\ISpotifyService.cs",
-              "RelativeToolTip": "Services\\ISpotifyService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAADAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "IPlaylistRepository.cs",
+              "DocumentMoniker": "C:\\Users\\felip\\Documents\\Projetos\\MisticFy\\src\\Repositories\\IPlaylistRepository.cs",
+              "RelativeDocumentMoniker": "src\\Repositories\\IPlaylistRepository.cs",
+              "ToolTip": "C:\\Users\\felip\\Documents\\Projetos\\MisticFy\\src\\Repositories\\IPlaylistRepository.cs",
+              "RelativeToolTip": "src\\Repositories\\IPlaylistRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-21T17:22:46.836Z",
+              "WhenOpened": "2025-07-17T23:38:55.382Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "PlaylistRepository.cs",
-              "DocumentMoniker": "C:\\Users\\felip\\OneDrive\\Documents\\MusicFy\\MisticFy\\Repositories\\PlaylistRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\PlaylistRepository.cs",
-              "ToolTip": "C:\\Users\\felip\\OneDrive\\Documents\\MusicFy\\MisticFy\\Repositories\\PlaylistRepository.cs",
-              "RelativeToolTip": "Repositories\\PlaylistRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEQAAAAlAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\felip\\Documents\\Projetos\\MisticFy\\src\\Repositories\\PlaylistRepository.cs",
+              "RelativeDocumentMoniker": "src\\Repositories\\PlaylistRepository.cs",
+              "ToolTip": "C:\\Users\\felip\\Documents\\Projetos\\MisticFy\\src\\Repositories\\PlaylistRepository.cs",
+              "RelativeToolTip": "src\\Repositories\\PlaylistRepository.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAQwGYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-21T17:22:17.293Z",
+              "WhenOpened": "2025-07-17T23:28:28.321Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\felip\\Documents\\Projetos\\MisticFy\\src\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "src\\Services\\UserService.cs",
+              "ToolTip": "C:\\Users\\felip\\Documents\\Projetos\\MisticFy\\src\\Services\\UserService.cs",
+              "RelativeToolTip": "src\\Services\\UserService.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAADEAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T23:14:18.84Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "C:\\Users\\felip\\Documents\\Projetos\\MisticFy\\src\\Services\\IUserService.cs",
+              "RelativeDocumentMoniker": "src\\Services\\IUserService.cs",
+              "ToolTip": "C:\\Users\\felip\\Documents\\Projetos\\MisticFy\\src\\Services\\IUserService.cs",
+              "RelativeToolTip": "src\\Services\\IUserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T23:13:32.141Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\felip\\Documents\\Projetos\\MisticFy\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\felip\\Documents\\Projetos\\MisticFy\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAcwIYAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T23:11:30.758Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SpotifyAuthMiddleware.cs",
+              "DocumentMoniker": "C:\\Users\\felip\\Documents\\Projetos\\MisticFy\\src\\Middleware\\SpotifyAuthMiddleware.cs",
+              "RelativeDocumentMoniker": "src\\Middleware\\SpotifyAuthMiddleware.cs",
+              "ToolTip": "C:\\Users\\felip\\Documents\\Projetos\\MisticFy\\src\\Middleware\\SpotifyAuthMiddleware.cs",
+              "RelativeToolTip": "src\\Middleware\\SpotifyAuthMiddleware.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T21:32:09.267Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PlaylistController.cs",
+              "DocumentMoniker": "C:\\Users\\felip\\Documents\\Projetos\\MisticFy\\src\\Controllers\\PlaylistController.cs",
+              "RelativeDocumentMoniker": "src\\Controllers\\PlaylistController.cs",
+              "ToolTip": "C:\\Users\\felip\\Documents\\Projetos\\MisticFy\\src\\Controllers\\PlaylistController.cs",
+              "RelativeToolTip": "src\\Controllers\\PlaylistController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAgwB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T15:20:45.604Z",
               "EditorCaption": ""
             }
           ]

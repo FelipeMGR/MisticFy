@@ -4,60 +4,63 @@ using System.Security.Claims;
 using MisticFy.Services;
 using Microsoft.AspNetCore.Authorization;
 
-[ApiController]
-[Route("[controller]")]
-public class LoginController(IConfiguration configuration, IUserService _userService, ITokenService _token) : ControllerBase
+namespace MisticFy.src.Controllers
 {
-    private readonly string _clientId = configuration["Spotify:ClientId"];
-    private readonly string _clientSecret = configuration["Spotify:ClientSecret"];
-    private readonly string _redirectUri = configuration["Spotify:RedirectUri"];
-
-    [HttpGet("authorize")]
-    public IActionResult Authorize()
+    [ApiController]
+    [Route("[controller]")]
+    public class LoginController(IConfiguration configuration, IUserService _userService, ITokenService _token) : ControllerBase
     {
-        var request = new LoginRequest(new Uri(_redirectUri), _clientId, LoginRequest.ResponseType.Code)
+        private readonly string _clientId = configuration["Spotify:ClientId"];
+        private readonly string _clientSecret = configuration["Spotify:ClientSecret"];
+        private readonly string _redirectUri = configuration["Spotify:RedirectUri"];
+
+        [HttpGet("authorize")]
+        public IActionResult Authorize()
         {
-            Scope = [Scopes.UserReadPrivate, Scopes.UserReadEmail, Scopes.PlaylistModifyPublic, Scopes.PlaylistModifyPrivate]
-        };
-        var uri = request.ToUri();
-        return Redirect(uri.ToString());
-    }
+            var request = new LoginRequest(new Uri(_redirectUri), _clientId, LoginRequest.ResponseType.Code)
+            {
+                Scope = [Scopes.UserReadPrivate, Scopes.UserReadEmail, Scopes.PlaylistModifyPublic, Scopes.PlaylistModifyPrivate]
+            };
+            var uri = request.ToUri();
+            return Redirect(uri.ToString());
+        }
 
-    [HttpGet("callback")]
-    public async Task<IActionResult> Callback(string code)
-    {
-        try
+        [HttpGet("callback")]
+        public async Task<IActionResult> Callback(string code)
         {
-            var tokenResponse = await new OAuthClient().RequestToken(
-                new AuthorizationCodeTokenRequest(_clientId, _clientSecret, code, new Uri(_redirectUri))
-            );
+            try
+            {
+                var tokenResponse = await new OAuthClient().RequestToken(
+                    new AuthorizationCodeTokenRequest(_clientId, _clientSecret, code, new Uri(_redirectUri))
+                );
 
-            var spotify = new SpotifyClient(tokenResponse.AccessToken);
-            var spotifyProfile = await spotify.UserProfile.Current();
+                var spotify = new SpotifyClient(tokenResponse.AccessToken);
+                var spotifyProfile = await spotify.UserProfile.Current();
 
-            var user = await _userService.FindOrCreateUserAsync(
-                spotifyProfile.Id,
-                spotifyProfile.DisplayName,
-                spotifyProfile.Email,
-                tokenResponse.AccessToken,
-                tokenResponse.RefreshToken,
-                tokenResponse.ExpiresIn
-            );
+                var user = await _userService.FindOrCreateUserAsync(
+                    spotifyProfile.Id,
+                    spotifyProfile.DisplayName,
+                    spotifyProfile.Email,
+                    tokenResponse.AccessToken,
+                    tokenResponse.RefreshToken,
+                    tokenResponse.ExpiresIn
+                );
 
-            var claims = new List<Claim>
+                var claims = new List<Claim>
             {
             new(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new(ClaimTypes.Email, user.Email)
             };
 
-            var jwtToken = _token.GenerateAccessToken(claims, configuration);
+                var jwtToken = _token.GenerateAccessToken(claims, configuration);
 
-            Console.WriteLine($"User {user.Name} logged in.");
-            return Ok(new { Token = jwtToken });
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
+                Console.WriteLine($"User {user.Name} logged in.");
+                return Ok(new { Token = jwtToken });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

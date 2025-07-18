@@ -1,6 +1,6 @@
 [
   {
-    "ContainingType": "LoginController",
+    "ContainingType": "MisticFy.src.Controllers.LoginController",
     "Method": "Authorize",
     "RelativePath": "Login/authorize",
     "HttpMethod": "GET",
@@ -10,7 +10,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "LoginController",
+    "ContainingType": "MisticFy.src.Controllers.LoginController",
     "Method": "Callback",
     "RelativePath": "Login/callback",
     "HttpMethod": "GET",
@@ -26,51 +26,26 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "LoginController",
-    "Method": "GetCurrentUser",
-    "RelativePath": "Login/user",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MisticFy.Controllers.MusicsController",
-    "Method": "GetMusic",
-    "RelativePath": "Musics/{musicName}",
-    "HttpMethod": "GET",
+    "ContainingType": "MisticFy.src.Controllers.PlaylistController",
+    "Method": "CreatePlaylistAsync",
+    "RelativePath": "Playlist/CreatePlaylist",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "token",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "musicName",
-        "Type": "System.String",
+        "Name": "playlist",
+        "Type": "MisticFy.Models.Playlist",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "MisticFy.DTO.MusicDTO",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "MisticFy.Controllers.PlaylistController",
+    "ContainingType": "MisticFy.src.Controllers.PlaylistController",
     "Method": "UpdatePlaylist",
-    "RelativePath": "Playlist/{playlistId}",
-    "HttpMethod": "POST",
+    "RelativePath": "Playlist/UpdatePlaylist",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -82,7 +57,7 @@
       {
         "Name": "playlistId",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
@@ -98,9 +73,9 @@
     ]
   },
   {
-    "ContainingType": "MisticFy.Controllers.PlaylistController",
+    "ContainingType": "MisticFy.src.Controllers.PlaylistController",
     "Method": "GetPlaylistAsyc",
-    "RelativePath": "Playlist/{userPlaylist}",
+    "RelativePath": "Playlist/userPlaylist",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -108,23 +83,33 @@
       {
         "Name": "userPlaylist",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "MisticFy.Controllers.PlaylistController",
-    "Method": "CreatePlaylistAsync",
-    "RelativePath": "Playlist/createPlaylist",
-    "HttpMethod": "POST",
+    "ContainingType": "MisticFy.Controllers.SearchController",
+    "Method": "Search",
+    "RelativePath": "Search",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "playlist",
-        "Type": "MisticFy.Models.Playlist",
-        "IsRequired": true
+        "Name": "query",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "types",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "limit",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

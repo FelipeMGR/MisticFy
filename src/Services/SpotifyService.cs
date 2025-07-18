@@ -1,12 +1,12 @@
 using AutoMapper;
 using MisticFy.DTO;
+using MisticFy.Services;
 using SpotifyAPI.Web;
 
-namespace MisticFy.Services;
+namespace MisticFy.src.Services;
 
 public class SpotifyService(IMapper _mapper) : ISpotifyService
 {
-
     public async Task<SpotifySearchResultDTO> SearchAsync(string accessToken, string query, SearchRequest.Types types, int limit)
     {
         var spotify = GetSpotifyClient(accessToken);
@@ -31,9 +31,9 @@ public class SpotifyService(IMapper _mapper) : ISpotifyService
 
     public SpotifyClient GetSpotifyClient(string token)
     {
-        var acessToken = token.Replace("Bearer", " ");
+        var accessToken = token?.Replace("Bearer ", "", StringComparison.OrdinalIgnoreCase).Trim();
 
-        var config = SpotifyClientConfig.CreateDefault().WithToken(acessToken);
+        var config = SpotifyClientConfig.CreateDefault().WithToken(accessToken);
         var spotify = new SpotifyClient(config);
 
         return spotify;

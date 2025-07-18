@@ -1,6 +1,6 @@
 using SpotifyAPI.Web;
 
-namespace MisticFy.Services;
+namespace MisticFy.src.Services;
 
 public class SpotifyTokenRefresher(IConfiguration _config) : ISpotifyTokenRefresher
 {

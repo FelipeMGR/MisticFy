@@ -1,4 +1,4 @@
-namespace MisticFy.Services;
+namespace MisticFy.src.Services;
 
 public interface ISpotifyTokenRefresher
 {

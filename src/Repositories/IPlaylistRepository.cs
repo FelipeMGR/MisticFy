@@ -6,8 +6,8 @@ namespace MisticFy.Repositories;
 
 public interface IPlaylistRepository
 {
-  Task<ActionResult<SpotifyPlaylistDetailsDTO>> GetUserPlaylistAsync([FromHeader(Name = "Authentication")] string token, string playlistId);
-  Task<ActionResult<SpotifyPlaylistDTO>> CreatePlaylistAsync([FromHeader(Name = "Authentication")] string token, [FromBody] Playlist playlist);
-  Task<ActionResult<SpotifyPlaylistDTO>> AddSongToPlaylist([FromHeader(Name = "Authorization")] string token, [FromBody] List<string> tracks, string playlistId);
+  Task<ActionResult<SpotifyPlaylistDetailsDTO>> GetUserPlaylistAsync(string playlistId);
+  Task<ActionResult<SpotifyPlaylistDTO>> CreatePlaylistAsync([FromBody] Playlist playlist);
+  Task<ActionResult<SpotifyPlaylistDTO>> AddSongToPlaylist([FromBody] List<string> tracks, string playlistId);
 
 }

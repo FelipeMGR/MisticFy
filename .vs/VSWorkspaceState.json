@@ -1,10 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Controllers",
-    "\\Models",
-    "\\Repositories"
+    ""
   ],
-  "SelectedNode": "\\Models\\Music.cs",
+  "SelectedNode": "\\MisticFy.sln",
   "PreviewInSolutionExplorer": false
 }
