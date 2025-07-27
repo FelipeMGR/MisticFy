@@ -9,9 +9,6 @@ namespace MisticFy.Repositories;
 
 public class PlaylistRepository(IMapper mapper, ISpotifyService spotifyService, IHttpContextAccessor httpContextAccessor) : IPlaylistRepository
 {
-    private readonly ISpotifyService spotifyService = spotifyService;
-    private readonly IHttpContextAccessor httpContextAccessor = httpContextAccessor;
-    private readonly IMapper mapper = mapper;
 
     public async Task<ActionResult<SpotifyPlaylistDTO>> CreatePlaylistAsync([FromBody] Playlist playlist)
     {

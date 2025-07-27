@@ -17,7 +17,7 @@ namespace MisticFy.src.Controllers
         [HttpGet("authorize")]
         public IActionResult Authorize()
         {
-            var request = new LoginRequest(new Uri(_redirectUri), _clientId, LoginRequest.ResponseType.Code)
+            LoginRequest request = new(new Uri(_redirectUri), _clientId, LoginRequest.ResponseType.Code)
             {
                 Scope = [Scopes.UserReadPrivate, Scopes.UserReadEmail, Scopes.PlaylistModifyPublic, Scopes.PlaylistModifyPrivate]
             };
