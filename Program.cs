@@ -119,15 +119,25 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+if(app.Environment.IsDevelopment())
 {
-    app.MapScalarApiReference();
-    app.UseSwagger(options =>
-    {
+    app.UseSwagger(options => {
         options.RouteTemplate = "swagger/{documentName}/swagger.json";
     });
+
     app.UseSwaggerUI(c => {
-        c.SwaggerEndpoint("swagger/MistFy_v1/swagger.json", "MistFy_v1");
+        c.SwaggerEndpoint("MistFy_v1/swagger.json", "MistFy_v1");
+    });
+
+    app.MapScalarApiReference("/scalar", options => {
+        options.OpenApiRoutePattern = "/swagger/MistFy_v1/swagger.json";
+
+        options
+            .AddPreferredSecuritySchemes(["BearerAuth"])
+            .AddHttpAuthentication("BearerAuth", auth => { auth.Token = null; })
+            .WithTitle("MisticFy API Docs")
+            .WithSidebar(true)
+            .WithTheme(ScalarTheme.Mars);
     });
 }
 app.UseCors();
