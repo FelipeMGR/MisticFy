@@ -1,8 +1,6 @@
 using SpotifyAPI.Web;
-using MisticFy.Repositories;
 using MisticFy.Context;
 using MisticFy.src.Middleware;
-using MisticFy.DTO;
 using MisticFy.src.Services;
 using Microsoft.EntityFrameworkCore;
 using MisticFy.Services;
@@ -11,6 +9,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Scalar.AspNetCore;
 using Microsoft.OpenApi.Models;
+using MisticFy.src.DTO;
+using MisticFy.src.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

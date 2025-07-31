@@ -1,13 +1,11 @@
-using Microsoft.AspNetCore.Mvc;
-using MisticFy.DTO;
 using MisticFy.Models;
+using MisticFy.src.DTO;
 
-namespace MisticFy.Repositories;
+namespace MisticFy.src.Repositories;
 
 public interface IPlaylistRepository
 {
-  Task<ActionResult<SpotifyPlaylistDetailsDTO>> GetUserPlaylistAsync(string playlistId);
-  Task<ActionResult<SpotifyPlaylistDTO>> CreatePlaylistAsync([FromBody] Playlist playlist);
-  Task<ActionResult<SpotifyPlaylistDTO>> AddSongToPlaylist([FromBody] List<string> tracks, string playlistId);
-
+  Task<SpotifyPlaylistDetailsDTO> GetUserPlaylistAsync(string playlistId);
+  Task<SpotifyPlaylistDTO> CreatePlaylistAsync(Playlist playlist);
+  Task<SpotifyPlaylistDTO> AddSongToPlaylistAsync(AddTrackRequestDTO tracks, string playlistId);
 }

@@ -1,5 +1,5 @@
 using System;
-using MisticFy.DTO;
+using MisticFy.src.DTO;
 using SpotifyAPI.Web;
 
 namespace MisticFy.Services;

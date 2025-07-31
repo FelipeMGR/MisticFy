@@ -1,4 +1,4 @@
-using MisticFy.DTO;
+using MisticFy.src.DTO;
 
 namespace MisticFy.Models;
 

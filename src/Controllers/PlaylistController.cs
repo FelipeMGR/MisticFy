@@ -1,9 +1,9 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MisticFy.DTO;
 using MisticFy.Models;
-using MisticFy.Repositories;
+using MisticFy.src.DTO;
+using MisticFy.src.Repositories;
 
 namespace MisticFy.src.Controllers
 {
@@ -25,9 +25,9 @@ namespace MisticFy.src.Controllers
 
         [HttpPut("AddSongToPlaylist")]
         [Authorize]
-        public async Task<ActionResult<SpotifyPlaylistDTO>> UpdatePlaylistAsync([FromBody] List<string> uris, string playlistId)
+        public async Task<ActionResult<SpotifyPlaylistDTO>> UpdatePlaylistAsync([FromBody] AddTrackRequestDTO uris, string playlistId)
         {
-            var playlist = await _playlist.AddSongToPlaylist(uris, playlistId);
+            var playlist = await _playlist.AddSongToPlaylistAsync(uris, playlistId);
 
             return Ok(playlist);
         }

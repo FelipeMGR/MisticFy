@@ -416,5 +416,5 @@ C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\refint\MisticFy.dll
 C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\MisticFy.pdb
 C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\MisticFy.genruntimeconfig.cache
 C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\ref\MisticFy.dll
-C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\felip\Documents\Projetos\MisticFy\bin\Debug\net8.0\openapi.json
+C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

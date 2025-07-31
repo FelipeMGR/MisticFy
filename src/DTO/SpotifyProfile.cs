@@ -1,9 +1,8 @@
-using System;
 using AutoMapper;
 using MisticFy.Services;
 using SpotifyAPI.Web;
 
-namespace MisticFy.DTO;
+namespace MisticFy.src.DTO;
 
 public class SpotifyProfile : Profile
 {

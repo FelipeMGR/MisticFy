@@ -1,6 +1,4 @@
-using System;
-
-namespace MisticFy.DTO;
+namespace MisticFy.src.DTO;
 
 public class SpotifyUserDTO
 {

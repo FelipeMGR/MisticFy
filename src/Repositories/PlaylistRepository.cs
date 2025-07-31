@@ -1,24 +1,25 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using MisticFy.DTO;
 using MisticFy.Models;
 using MisticFy.Services;
+using MisticFy.src.DTO;
 using SpotifyAPI.Web;
 
-namespace MisticFy.Repositories;
+namespace MisticFy.src.Repositories;
 
 public class PlaylistRepository(IMapper mapper, ISpotifyService spotifyService, IHttpContextAccessor httpContextAccessor) : IPlaylistRepository
 {
 
-    public async Task<ActionResult<SpotifyPlaylistDTO>> CreatePlaylistAsync([FromBody] Playlist playlist)
+    public async Task<SpotifyPlaylistDTO> CreatePlaylistAsync([FromBody] Playlist playlist)
     {
-        var accessToken = httpContextAccessor.HttpContext?.Items["SpotifyAccessToken"]?.ToString();
+        string accessToken = httpContextAccessor.HttpContext?.Items["SpotifyAccessToken"]?.ToString();
+
         SpotifyClient spotify = spotifyService.GetSpotifyClient(accessToken);
 
-        var currentUser = await spotify.UserProfile.Current();
+        PrivateUser currentUser = await spotify.UserProfile.Current();
         string userId = currentUser.Id;
 
-        var newPlayList = await spotify.Playlists.Create(userId, new PlaylistCreateRequest(playlist.Name)
+        FullPlaylist newPlayList = await spotify.Playlists.Create(userId, new PlaylistCreateRequest(playlist.Name)
         {
             Description = playlist.Description,
             Public = playlist.IsPublic
@@ -36,36 +37,41 @@ public class PlaylistRepository(IMapper mapper, ISpotifyService spotifyService, 
         };
     }
 
-    public async Task<ActionResult<SpotifyPlaylistDetailsDTO>> GetUserPlaylistAsync(string playlistId)
+    public async Task<SpotifyPlaylistDetailsDTO> GetUserPlaylistAsync(string playlistId)
     {
-        var accessToken = httpContextAccessor.HttpContext?.Items["SpotifyAccessToken"]?.ToString();
+        string accessToken = httpContextAccessor.HttpContext?.Items["SpotifyAccessToken"]?.ToString();
 
         SpotifyClient spotify = spotifyService.GetSpotifyClient(accessToken);
 
         FullPlaylist searchResult = await spotify.Playlists.Get(playlistId);
 
-        var playlist = mapper.Map<SpotifyPlaylistDetailsDTO>(searchResult);
-
-        return playlist;
+        return mapper.Map<SpotifyPlaylistDetailsDTO>(searchResult);
     }
 
-    public async Task<ActionResult<SpotifyPlaylistDTO>> AddSongToPlaylist([FromBody] List<string> uris, string playlistId)
+    public async Task<SpotifyPlaylistDTO> AddSongToPlaylistAsync(AddTrackRequestDTO request, string playlistId)
     {
-        var accessToken = httpContextAccessor.HttpContext?.Items["SpotifyAccessToken"]?.ToString();
+        string accessToken = httpContextAccessor.HttpContext?.Items["SpotifyAccessToken"]?.ToString();
 
         SpotifyClient spotify = spotifyService.GetSpotifyClient(accessToken);
 
-        PlaylistAddItemsRequest updateRequest = new PlaylistAddItemsRequest(uris);
+        List<string> uris = request.Tracks.Select(track => track.Uri).ToList();
 
-        SnapshotResponse result = await spotify.Playlists.AddItems(playlistId, updateRequest);
+        PlaylistAddItemsRequest updateRequest = new(uris);
+
+        _ = await spotify.Playlists.AddItems(playlistId, updateRequest);
 
         FullPlaylist updatedPlaylist = await spotify.Playlists.Get(playlistId);
 
-        var musics = new List<MusicDTO>();
+        return MapToSpotifyPlaylist(updatedPlaylist);
+    }
 
-        if (updatedPlaylist?.Tracks?.Items != null)
+    private static SpotifyPlaylistDTO MapToSpotifyPlaylist(FullPlaylist playlist)
+    {
+        List<MusicDTO> musics = [];
+
+        if (playlist?.Tracks?.Items != null)
         {
-            foreach (var item in updatedPlaylist.Tracks.Items)
+            foreach (var item in playlist.Tracks.Items)
             {
                 if (item.Track is FullTrack track)
                 {
@@ -90,10 +96,10 @@ public class PlaylistRepository(IMapper mapper, ISpotifyService spotifyService, 
         }
         return new SpotifyPlaylistDTO
         {
-            Name = updatedPlaylist.Name,
+            Name = playlist.Name,
             Owner = new SpotifyUserDTO
             {
-                DisplayName = updatedPlaylist.Owner.DisplayName
+                DisplayName = playlist.Owner.DisplayName
             },
             Musics = musics
         };

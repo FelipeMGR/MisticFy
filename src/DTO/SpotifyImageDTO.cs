@@ -1,7 +1,6 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace MisticFy.DTO;
+namespace MisticFy.src.DTO;
 public class SpotifyImageDTO
 {
   [Key]

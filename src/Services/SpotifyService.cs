@@ -1,6 +1,6 @@
 using AutoMapper;
-using MisticFy.DTO;
 using MisticFy.Services;
+using MisticFy.src.DTO;
 using SpotifyAPI.Web;
 
 namespace MisticFy.src.Services;

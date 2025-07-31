@@ -1,4 +1,4 @@
-namespace MisticFy.DTO;
+namespace MisticFy.src.DTO;
 
 public class MusicDTO
 {

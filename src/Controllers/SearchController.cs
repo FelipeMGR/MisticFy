@@ -2,7 +2,6 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MisticFy.DTO;
 using MisticFy.Services;
 using SpotifyAPI.Web;
 

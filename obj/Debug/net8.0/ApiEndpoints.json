@@ -27,6 +27,37 @@
   },
   {
     "ContainingType": "MisticFy.src.Controllers.PlaylistController",
+    "Method": "UpdatePlaylistAsync",
+    "RelativePath": "Playlist/AddSongToPlaylist",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "uris",
+        "Type": "MisticFy.src.DTO.AddTrackRequestDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "playlistId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "MisticFy.src.DTO.SpotifyPlaylistDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MisticFy.src.Controllers.PlaylistController",
     "Method": "CreatePlaylistAsync",
     "RelativePath": "Playlist/CreatePlaylist",
     "HttpMethod": "POST",
@@ -39,30 +70,9 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MisticFy.src.Controllers.PlaylistController",
-    "Method": "UpdatePlaylist",
-    "RelativePath": "Playlist/UpdatePlaylist",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "uris",
-        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": true
-      },
-      {
-        "Name": "playlistId",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
     "ReturnTypes": [
       {
-        "Type": "MisticFy.Models.Playlist",
+        "Type": "MisticFy.src.DTO.SpotifyPlaylistDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -74,7 +84,7 @@
   },
   {
     "ContainingType": "MisticFy.src.Controllers.PlaylistController",
-    "Method": "GetPlaylistAsyc",
+    "Method": "GetPlaylistAsync",
     "RelativePath": "Playlist/userPlaylist",
     "HttpMethod": "GET",
     "IsController": true,
@@ -86,7 +96,17 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "MisticFy.src.DTO.SpotifyPlaylistDetailsDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "MisticFy.Controllers.SearchController",
