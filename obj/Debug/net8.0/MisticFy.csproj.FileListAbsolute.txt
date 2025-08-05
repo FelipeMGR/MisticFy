@@ -404,12 +404,6 @@ C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\scopedcss\bundle\Mis
 C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\staticwebassets\msbuild.MisticFy.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\staticwebassets\msbuild.MisticFy.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\staticwebassets\msbuild.build.MisticFy.props
-C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.MisticFy.props
-C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.MisticFy.props
-C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\MisticFy.csproj.Up2Date
 C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\MisticFy.dll
 C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\refint\MisticFy.dll
@@ -418,3 +412,8 @@ C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\MisticFy.genruntimec
 C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\ref\MisticFy.dll
 C:\Users\felip\Documents\Projetos\MisticFy\bin\Debug\net8.0\openapi.json
 C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\Users\felip\Documents\Projetos\MisticFy\obj\Debug\net8.0\staticwebassets.build.json.cache

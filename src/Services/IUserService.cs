@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using MisticFy.Models;
+using MisticFy.src.Models;
 
 namespace MisticFy.Services;
 

@@ -54,8 +54,16 @@ namespace MisticFy.src.Controllers
 
                 var jwtToken = _token.GenerateAccessToken(claims, configuration);
 
-                Console.WriteLine($"User {user.Name} logged in.");
-                return Ok(new { Token = jwtToken });
+                Response.Cookies.Append("SessionToken", jwtToken, new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = false, 
+                    SameSite = SameSiteMode.Lax,
+                    Expires = DateTimeOffset.UtcNow.AddHours(1)
+                });
+
+                return Ok(new { message = $"User {user.Name} logged in." });
+
             }
             catch (Exception ex)
             {

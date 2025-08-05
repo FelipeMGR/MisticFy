@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MisticFy.Context;
-using MisticFy.Models;
+using MisticFy.src.Models;
 
 namespace MisticFy.Services;
 

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MisticFy.Models;
+using MisticFy.src.Models;
 
 namespace MisticFy.Context
 {

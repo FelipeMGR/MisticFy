@@ -1,16 +1,16 @@
-using SpotifyAPI.Web;
-using MisticFy.Context;
-using MisticFy.src.Middleware;
-using MisticFy.src.Services;
-using Microsoft.EntityFrameworkCore;
-using MisticFy.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Scalar.AspNetCore;
 using Microsoft.OpenApi.Models;
+using MisticFy.Context;
+using MisticFy.Services;
 using MisticFy.src.DTO;
+using MisticFy.src.Middleware;
 using MisticFy.src.Repositories;
+using MisticFy.src.Services;
+using Scalar.AspNetCore;
+using SpotifyAPI.Web;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,7 +42,7 @@ builder.Services.AddSwaggerGen(c =>
                     Id = "Bearer"
                 }
             },
-            new string[] {}
+            Array.Empty<string>()
         }
     });
 });
@@ -113,7 +113,8 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins("http://localhost:5092")
         .AllowAnyHeader()
-        .AllowAnyMethod();
+        .AllowAnyMethod()
+        .AllowCredentials();
     });
 });
 
@@ -140,9 +141,10 @@ if(app.Environment.IsDevelopment())
             .WithTheme(ScalarTheme.Mars);
     });
 }
-app.UseCors();
-app.UseAuthentication();
+app.UseHttpsRedirection();
+app.UseCors("AllowSwaggerUI");
 app.UseMiddleware<SpotifyAuthMiddleware>();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

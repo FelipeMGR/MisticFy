@@ -9,9 +9,13 @@
 
   <ItemGroup>
     <Compile Remove="client\**" />
+    <Compile Remove="src\Compose\**" />
     <Content Remove="client\**" />
+    <Content Remove="src\Compose\**" />
     <EmbeddedResource Remove="client\**" />
+    <EmbeddedResource Remove="src\Compose\**" />
     <None Remove="client\**" />
+    <None Remove="src\Compose\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,10 +42,6 @@
   <Reference Include="SpotifyAPI.Web">
     <HintPath>..\Dlls\SpotifyAPI.Web.dll</HintPath>
   </Reference>
-</ItemGroup>
-
-<ItemGroup>
-  <Folder Include="src\Compose\" />
 </ItemGroup>
 
 	<Target Name="OpenAPI" AfterTargets="Build" Condition="'$(Configuration)'=='Debug'">

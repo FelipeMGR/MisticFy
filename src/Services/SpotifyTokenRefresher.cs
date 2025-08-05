@@ -4,7 +4,7 @@ namespace MisticFy.src.Services;
 
 public class SpotifyTokenRefresher(IConfiguration _config) : ISpotifyTokenRefresher
 {
-  public async Task<string> RefreshTokenAsync(string refreshToken)
+  public async Task<string?> RefreshTokenAsync(string refreshToken)
   {
     var clientId = _config["Spotify:ClientId"];
     var clientSecret = _config["Spotify:ClientSecret"];
