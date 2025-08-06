@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using MisticFy.Services;
 using SpotifyAPI.Web;
 using System.Security.Claims;
-using MisticFy.Services;
-using Microsoft.AspNetCore.Authorization;
 
 namespace MisticFy.src.Controllers
 {
@@ -57,7 +56,7 @@ namespace MisticFy.src.Controllers
                 Response.Cookies.Append("SessionToken", jwtToken, new CookieOptions
                 {
                     HttpOnly = true,
-                    Secure = false, 
+                    Secure = false,
                     SameSite = SameSiteMode.Lax,
                     Expires = DateTimeOffset.UtcNow.AddHours(1)
                 });

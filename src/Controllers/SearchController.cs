@@ -1,31 +1,29 @@
-using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MisticFy.Services;
+using MisticFy.src.DTO;
+using MisticFy.src.Repositories;
 using SpotifyAPI.Web;
 
-namespace MisticFy.Controllers
+namespace MisticFy.src.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class SearchController(ISpotifyService _service, IUserService _userService) : ControllerBase
+    public class SearchController(ISearchRepository search) : ControllerBase
     {
         [HttpGet]
         [Authorize]
-        public async Task<ActionResult> Search([FromQuery] string query, [FromQuery] SearchRequest.Types types, [FromQuery] int limit = 10)
+        public async Task<ActionResult<SpotifySearchResultDTO>> Search([FromQuery] string query, [FromQuery] SearchRequest.Types types, [FromQuery] int limit = 10)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (string.IsNullOrEmpty(userId))
-                return Unauthorized("User not authenticated.");
+            try
+            {
+                SpotifySearchResultDTO result = await search.SearchAsync(query, types, limit);
 
-            var user = await _userService.GetUserByIdAsync(int.Parse(userId));
-
-            if (user == null || string.IsNullOrEmpty(user.AccessToken))
-                return Unauthorized("User not found or access token missing.");
-
-            var result = await _service.SearchAsync(user.AccessToken, query, types, limit);
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
     }

@@ -1,4 +1,3 @@
-using System;
 using AutoMapper;
 using MisticFy.src.DTO;
 using SpotifyAPI.Web;
@@ -8,16 +7,16 @@ namespace MisticFy.Services;
 public class TrackToMusicConversor : ITypeConverter<PlaylistTrack<IPlayableItem>, MusicDTO>
 
 {
-  public MusicDTO Convert(
-      PlaylistTrack<IPlayableItem> source,
-      MusicDTO destination,
-      ResolutionContext context)
-  {
-    if (source.Track is FullTrack fullTrack)
+    public MusicDTO Convert(
+        PlaylistTrack<IPlayableItem> source,
+        MusicDTO destination,
+        ResolutionContext context)
     {
-      return context.Mapper.Map<MusicDTO>(fullTrack);
+        if (source.Track is FullTrack fullTrack)
+        {
+            return context.Mapper.Map<MusicDTO>(fullTrack);
+        }
+        return null;
     }
-    return null;
-  }
 
 }
