@@ -1,4 +1,4 @@
-using MisticFy.src.DTO.DTOs;
+﻿using MisticFy.src.DTO.DTOs;
 using SpotifyAPI.Web;
 
 namespace MisticFy.src.DTO.DTO;

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MisticFy.src.DTO.DTOs.SearchDTOs;
+using MisticFy.src.DTO.DTOs;
+using MisticFy.src.DTO.SearchMap;
 using MisticFy.src.Repositories;
 using SpotifyAPI.Web;
 
@@ -10,13 +11,13 @@ namespace MisticFy.src.Controllers
     [ApiController]
     public class SearchController(ISearchRepository search) : ControllerBase
     {
-        [HttpGet]
+        [HttpGet("search-track")]
         [Authorize]
-        public async Task<ActionResult<SpotifySearchResultDTO>> Search([FromQuery] string query, [FromQuery] SearchRequest.Types types = SearchRequest.Types.Track, [FromQuery] int limit = 10)
+        public async Task<ActionResult<SpotifySearchResultTrackDTO>> SearchTrack([FromQuery] string query, [FromQuery] SearchRequest.Types types = SearchRequest.Types.Track, [FromQuery] int limit = 10)
         {
             try
             {
-                SpotifySearchResultDTO result = await search.SearchTrackAsync(query, types, limit);
+                SpotifySearchResultTrackDTO result = await search.SearchTrackAsync(query, types, limit);
 
                 return Ok(result);
             }
