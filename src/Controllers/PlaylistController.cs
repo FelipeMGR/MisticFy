@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MisticFy.Models;
-using MisticFy.src.DTO;
+using MisticFy.src.DTO.DTO;
 using MisticFy.src.Repositories;
 
 namespace MisticFy.src.Controllers
@@ -22,20 +22,20 @@ namespace MisticFy.src.Controllers
             return Ok(playlist);
         }
 
-        [HttpPut("AddSongToPlaylist")]
+        [HttpPost("AddSongToPlaylist")]
         [Authorize]
-        public async Task<ActionResult<SpotifyPlaylistDTO>> UpdatePlaylistAsync([FromBody] AddTrackRequestDTO uris, string playlistId)
+        public async Task<ActionResult<SpotifyPlaylistDetailsDTO>> UpdatePlaylistAsync([FromBody] AddTrackRequestDTO uris, string playlistId)
         {
-            SpotifyPlaylistDTO playlist = await _playlist.AddSongToPlaylistAsync(uris, playlistId);
+            SpotifyPlaylistDetailsDTO playlist = await _playlist.AddSongToPlaylistAsync(uris, playlistId);
 
             return Ok(playlist);
         }
 
         [HttpPost("CreatePlaylist")]
         [Authorize]
-        public async Task<ActionResult<SpotifyPlaylistDTO>> CreatePlaylistAsync([FromBody] Playlist playlist)
+        public async Task<ActionResult<SpotifyPlaylistDetailsDTO>> CreatePlaylistAsync([FromBody] Playlist playlist)
         {
-            SpotifyPlaylistDTO userPlaylist = await _playlist.CreatePlaylistAsync(playlist);
+            SpotifyPlaylistDetailsDTO userPlaylist = await _playlist.CreatePlaylistAsync(playlist);
 
             return Ok(userPlaylist);
         }
