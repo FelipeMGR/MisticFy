@@ -4,7 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MisticFy.Context;
 using MisticFy.Services;
-using MisticFy.src.DTO;
+using MisticFy.src.DTO.Mapping;
 using MisticFy.src.Middleware;
 using MisticFy.src.Repositories;
 using MisticFy.src.Services;
@@ -48,14 +48,15 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 
-builder.Services.AddControllers(); 
+builder.Services.AddControllers();
 builder.Services.AddHttpContextAccessor();
 builder.Configuration.AddJsonFile("appsettings.Development.json");
-builder.Services.AddAutoMapper(typeof(SpotifyProfile));
+builder.Services.AddAutoMapper(typeof(SpotifyAlbumProfile).Assembly);
 builder.Services.AddScoped<IPlaylistRepository, PlaylistRepository>();
 builder.Services.AddScoped<ISpotifyService, SpotifyService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ISearchRepository, SearchRepository>();
 builder.Services.AddScoped<ISpotifyTokenRefresher, SpotifyTokenRefresher>();
 var secretKey = builder.Configuration["JWT:SecretKey"]
     ?? throw new ArgumentException("Invalid secret key!");
@@ -120,17 +121,20 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-if(app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger(options => {
+    app.UseSwagger(options =>
+    {
         options.RouteTemplate = "swagger/{documentName}/swagger.json";
     });
 
-    app.UseSwaggerUI(c => {
+    app.UseSwaggerUI(c =>
+    {
         c.SwaggerEndpoint("MistFy_v1/swagger.json", "MistFy_v1");
     });
 
-    app.MapScalarApiReference("/scalar", options => {
+    app.MapScalarApiReference("/scalar", options =>
+    {
         options.OpenApiRoutePattern = "/swagger/MistFy_v1/swagger.json";
 
         options

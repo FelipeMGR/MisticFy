@@ -8,6 +8,6 @@ public class SpotifyPlaylistDetailsDTO
     public string Id { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
-    public SpotifyUserDTO Owner { get; set; }
-    public IEnumerable<SpotifyMusicDTO> Musics { get; set; }
+    public PublicUser Owner { get; set; }
+    public List<SpotifyMusicDTO> Musics { get; set; }
 }

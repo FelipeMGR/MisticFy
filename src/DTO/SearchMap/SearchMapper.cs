@@ -74,22 +74,46 @@ namespace MisticFy.src.DTO.SearchMap
         private static List<SpotifyAlbumDTO> MapAlbums(Paging<SimpleAlbum, SearchResponse> albums)
         {
             if (albums?.Items == null) return [];
-            return albums.Items.Select(album => new SpotifyAlbumDTO
+            List<SpotifyAlbumDTO> albumCollection = new();
+
+            foreach (var item in albums.Items)
             {
-                Id = album.Id,
-                Name = album.Name,
-                ReleaseDate = album.ReleaseDate
-            }).ToList();
+                albumCollection.Add(new SpotifyAlbumDTO
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    ReleaseDate = item.ReleaseDate
+                });
+            }
+            return albumCollection;
         }
 
         private static List<SpotifyPlaylistDetailsDTO> MapPlaylists(Paging<FullPlaylist, SearchResponse> playlists)
         {
             if (playlists?.Items == null) return [];
-            return playlists.Items.Select(playlist => new SpotifyPlaylistDetailsDTO
+
+            List<SpotifyPlaylistDetailsDTO> playlistCollection = new();
+
+            foreach (var item in playlists.Items)
             {
-                Id = playlist.Id,
-                Name = playlist.Name
-            }).ToList();
+                playlistCollection.Add(new SpotifyPlaylistDetailsDTO
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    Description = item.Description,
+                    Musics = new List<SpotifyMusicDTO>
+                    {
+                        new SpotifyMusicDTO
+                        {
+                            Id = item.Id,
+                            Name = item.Name,
+                        }
+                    },
+                    Owner = item.Owner
+                });
+            }
+
+            return playlistCollection;
         }
 
         private static List<SpotifyArtistDTO> MapArtists(Paging<FullArtist, SearchResponse> artists)

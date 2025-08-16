@@ -41,7 +41,7 @@
         }
       }
     },
-    "/Playlist/{userPlaylist}": {
+    "/Playlist/userPlaylist": {
       "get": {
         "tags": [
           "Playlist"
