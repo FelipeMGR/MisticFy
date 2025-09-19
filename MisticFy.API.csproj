@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="client\**" />
+    <Compile Remove="src\Compose\**" />
+    <Content Remove="client\**" />
+    <Content Remove="src\Compose\**" />
+    <EmbeddedResource Remove="client\**" />
+    <EmbeddedResource Remove="src\Compose\**" />
+    <None Remove="client\**" />
+    <None Remove="src\Compose\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.20" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.18" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.20" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.20">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.20" />
+    <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="8.6.0" />
+    <PackageReference Include="Microsoft.SqlServer.Server" Version="1.0.0" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.3" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.6.3" />
+    <PackageReference Include="SpotifyAPI.Web" Version="7.2.1" />
+    <PackageReference Include="SpotifyAPI.Web.Auth" Version="7.2.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
+	<PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="9.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.3" />
+	<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.6.0" />
+  </ItemGroup>
+
+<ItemGroup>
+  <Reference Include="SpotifyAPI.Web">
+    <HintPath>..\Dlls\SpotifyAPI.Web.dll</HintPath>
+  </Reference>
+</ItemGroup>
+
+<ItemGroup>
+  <Folder Include="src\Exceptions\" />
+</ItemGroup>
+
+<ItemGroup>
+  <ProjectReference Include="..\Misticy.Exceptions\Misticy.Exceptions.csproj" />
+</ItemGroup>
+
+	<Target Name="OpenAPI" AfterTargets="Build" Condition="'$(Configuration)'=='Debug'">
+		<Exec Command="dotnet tool restore" WorkingDirectory="$(MSBuildProjectDirectory)" />
+
+		<Exec Command="dotnet swagger tofile --output openapi.json $(TargetPath) MistFy_v1" WorkingDirectory="$(TargetDir)" EnvironmentVariables="DOTNET_ROLL_FORWARD=LatestMajor" />
+	</Target>
+
+
+</Project>

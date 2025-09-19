@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MisticFy.API.src.Middleware;
 using MisticFy.Context;
 using MisticFy.Services;
 using MisticFy.src.DTO.Mapping;
@@ -104,8 +105,13 @@ builder.Services.AddTransient<SpotifyClient>(sp =>
     var token = new SpotifyClient(config.WithToken(response.AccessToken));
     return token;
 });
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+string azureConnectionString = builder.Configuration.GetConnectionString("AzureConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(azureConnectionString));
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddCors(options =>
@@ -148,6 +154,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors("AllowSwaggerUI");
 app.UseMiddleware<SpotifyAuthMiddleware>();
+app.UseMiddleware<CultureMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
