@@ -1,6 +1,4 @@
-﻿using MisticFy.src.DTO.DTOs;
-
-namespace MisticFy.src.DTO.DTO
+﻿namespace MisticFy.API.src.DTO.SpotifyDTO
 {
     public class AddTrackRequestDTO
     {

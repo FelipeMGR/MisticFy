@@ -1,8 +1,7 @@
-﻿using MisticFy.src.DTO.DTO;
-using MisticFy.src.DTO.DTOs;
+﻿using MisticFy.API.src.DTO.SpotifyDTO;
 using SpotifyAPI.Web;
 
-namespace MisticFy.src.DTO.SearchMap
+namespace MisticFy.API.src.DTO.SearchMap
 {
     public static class SearchMapper
     {

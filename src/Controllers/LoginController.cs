@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-using MisticFy.Services;
+using MisticFy.API.src.Services;
+using MisticFy.API.src.Services.TokenServices;
 using SpotifyAPI.Web;
 using System.Security.Claims;
 
-namespace MisticFy.src.Controllers
+namespace MisticFy.API.src.Controllers
 {
     [ApiController]
     [Route("[controller]")]

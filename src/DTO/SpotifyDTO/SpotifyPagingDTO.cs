@@ -1,4 +1,4 @@
-namespace MisticFy.src.DTO.DTO;
+namespace MisticFy.API.src.DTO.SpotifyDTO;
 
 public class SpotifyPagingDTO<T>
 {

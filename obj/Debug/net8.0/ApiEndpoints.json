@@ -29,13 +29,13 @@
     "ContainingType": "MisticFy.src.Controllers.PlaylistController",
     "Method": "UpdatePlaylistAsync",
     "RelativePath": "Playlist/AddSongToPlaylist",
-    "HttpMethod": "PUT",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "uris",
-        "Type": "MisticFy.src.DTO.AddTrackRequestDTO",
+        "Type": "MisticFy.src.DTO.DTO.AddTrackRequestDTO",
         "IsRequired": true
       },
       {
@@ -46,7 +46,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "MisticFy.src.DTO.SpotifyPlaylistDTO",
+        "Type": "MisticFy.src.DTO.DTO.SpotifyPlaylistDetailsDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -72,7 +72,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "MisticFy.src.DTO.SpotifyPlaylistDTO",
+        "Type": "MisticFy.src.DTO.DTO.SpotifyPlaylistDetailsDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -98,7 +98,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "MisticFy.src.DTO.SpotifyPlaylistDetailsDTO",
+        "Type": "MisticFy.src.DTO.DTO.SpotifyPlaylistDetailsDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -109,9 +109,9 @@
     ]
   },
   {
-    "ContainingType": "MisticFy.Controllers.SearchController",
-    "Method": "Search",
-    "RelativePath": "Search",
+    "ContainingType": "MisticFy.src.Controllers.SearchController",
+    "Method": "SearchTrack",
+    "RelativePath": "Search/search-track",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -132,6 +132,16 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "MisticFy.src.DTO.SearchMap.SpotifySearchResultTrackDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

@@ -1,6 +1,6 @@
-using MisticFy.src.Models;
+using MisticFy.API.src.Models;
 
-namespace MisticFy.Services;
+namespace MisticFy.API.src.Services;
 
 public interface IUserService
 {

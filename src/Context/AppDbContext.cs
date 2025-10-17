@@ -1,8 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using MisticFy.Models;
-using MisticFy.src.Models;
+using MisticFy.API.src.Models;
 
-namespace MisticFy.Context
+namespace MisticFy.API.src.Context
 {
     public class AppDbContext : DbContext
     {
@@ -10,7 +9,7 @@ namespace MisticFy.Context
         {
         }
 
-        public DbSet<Users>? Users { get; set; }
+        public DbSet<Users> Users { get; set; }
         public DbSet<Playlist> Playlists { get; set; }
         public DbSet<Music> Musics { get; set; }
 

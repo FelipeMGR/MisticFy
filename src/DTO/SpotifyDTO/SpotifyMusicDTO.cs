@@ -1,6 +1,4 @@
-using MisticFy.src.DTO.DTO;
-
-namespace MisticFy.src.DTO.DTOs;
+namespace MisticFy.API.src.DTO.SpotifyDTO;
 
 public class SpotifyMusicDTO
 {

@@ -1,7 +1,7 @@
-using MisticFy.Models;
-using MisticFy.src.DTO.DTO;
+using MisticFy.API.src.DTO.SpotifyDTO;
+using MisticFy.API.src.Models;
 
-namespace MisticFy.src.Repositories;
+namespace MisticFy.API.src.Repositories;
 
 public interface IPlaylistRepository
 {

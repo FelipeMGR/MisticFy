@@ -77,7 +77,7 @@
       }
     },
     "/Playlist/AddSongToPlaylist": {
-      "put": {
+      "post": {
         "tags": [
           "Playlist"
         ],
@@ -94,26 +94,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
+                "$ref": "#/components/schemas/AddTrackRequestDTO"
               }
             },
             "text/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
+                "$ref": "#/components/schemas/AddTrackRequestDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
+                "$ref": "#/components/schemas/AddTrackRequestDTO"
               }
             }
           }
@@ -124,17 +115,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/SpotifyPlaylistDTO"
+                  "$ref": "#/components/schemas/SpotifyPlaylistDetailsDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SpotifyPlaylistDTO"
+                  "$ref": "#/components/schemas/SpotifyPlaylistDetailsDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SpotifyPlaylistDTO"
+                  "$ref": "#/components/schemas/SpotifyPlaylistDetailsDTO"
                 }
               }
             }
@@ -172,17 +163,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/SpotifyPlaylistDTO"
+                  "$ref": "#/components/schemas/SpotifyPlaylistDetailsDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SpotifyPlaylistDTO"
+                  "$ref": "#/components/schemas/SpotifyPlaylistDetailsDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SpotifyPlaylistDTO"
+                  "$ref": "#/components/schemas/SpotifyPlaylistDetailsDTO"
                 }
               }
             }
@@ -190,7 +181,7 @@
         }
       }
     },
-    "/Search": {
+    "/Search/search-track": {
       "get": {
         "tags": [
           "Search"
@@ -201,13 +192,6 @@
             "in": "query",
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "types",
-            "in": "query",
-            "schema": {
-              "$ref": "#/components/schemas/Types"
             }
           },
           {
@@ -222,7 +206,165 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpotifySearchResultTrackDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpotifySearchResultTrackDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpotifySearchResultTrackDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Search/search-playlist": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpotifySearchResultPlaylistDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpotifySearchResultPlaylistDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpotifySearchResultPlaylistDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Search/search-artist": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpotifySearchResultArtistDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpotifySearchResultArtistDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpotifySearchResultArtistDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Search/search-album": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpotifySearchResultAlbumDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpotifySearchResultAlbumDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpotifySearchResultAlbumDTO"
+                }
+              }
+            }
           }
         }
       }
@@ -230,30 +372,52 @@
   },
   "components": {
     "schemas": {
-      "MusicDTO": {
+      "AddTrackRequestDTO": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "uri": {
-            "type": "string",
-            "nullable": true
-          },
-          "artists": {
+          "tracks": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/SpotifyArtistDTO"
+              "$ref": "#/components/schemas/SpotifyMusicDTO"
             },
             "nullable": true
           },
-          "album": {
-            "$ref": "#/components/schemas/SpotifyAlbumDTO"
+          "positionToInsert": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Followers": {
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string",
+            "nullable": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Image": {
+        "type": "object",
+        "properties": {
+          "height": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "width": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -279,8 +443,51 @@
           "musics": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/MusicDTO"
+              "$ref": "#/components/schemas/SpotifyMusicDTO"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PublicUser": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "externalUrls": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "followers": {
+            "$ref": "#/components/schemas/Followers"
+          },
+          "href": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Image"
+            },
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "uri": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -297,15 +504,8 @@
             "type": "string",
             "nullable": true
           },
-          "uri": {
+          "releaseDate": {
             "type": "string",
-            "nullable": true
-          },
-          "images": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SpotifyImageDTO"
-            },
             "nullable": true
           }
         },
@@ -321,32 +521,11 @@
           "name": {
             "type": "string",
             "nullable": true
-          },
-          "uri": {
-            "type": "string",
-            "nullable": true
-          },
-          "images": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SpotifyImageDTO"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "SpotifyImageDTO": {
-        "type": "object",
-        "properties": {
-          "url": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "SpotifyPlaylistDTO": {
+      "SpotifyMusicDTO": {
         "type": "object",
         "properties": {
           "id": {
@@ -357,18 +536,18 @@
             "type": "string",
             "nullable": true
           },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "owner": {
-            "$ref": "#/components/schemas/SpotifyUserDTO"
-          },
-          "musics": {
+          "artists": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/MusicDTO"
+              "$ref": "#/components/schemas/SpotifyArtistDTO"
             },
+            "nullable": true
+          },
+          "album": {
+            "$ref": "#/components/schemas/SpotifyAlbumDTO"
+          },
+          "uri": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -390,55 +569,69 @@
             "nullable": true
           },
           "owner": {
-            "$ref": "#/components/schemas/SpotifyUserDTO"
+            "$ref": "#/components/schemas/PublicUser"
           },
           "musics": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/MusicDTO"
-            },
-            "nullable": true
-          },
-          "images": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SpotifyImageDTO"
+              "$ref": "#/components/schemas/SpotifyMusicDTO"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "SpotifyUserDTO": {
+      "SpotifySearchResultAlbumDTO": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "displayName": {
-            "type": "string",
-            "nullable": true
-          },
-          "uri": {
-            "type": "string",
+          "albums": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SpotifyAlbumDTO"
+            },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Types": {
-        "enum": [
-          1,
-          2,
-          4,
-          8,
-          16,
-          32,
-          63
-        ],
-        "type": "integer",
-        "format": "int32"
+      "SpotifySearchResultArtistDTO": {
+        "type": "object",
+        "properties": {
+          "artists": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SpotifyArtistDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SpotifySearchResultPlaylistDTO": {
+        "type": "object",
+        "properties": {
+          "playlists": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SpotifyPlaylistDetailsDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SpotifySearchResultTrackDTO": {
+        "type": "object",
+        "properties": {
+          "tracks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SpotifyMusicDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       }
     },
     "securitySchemes": {

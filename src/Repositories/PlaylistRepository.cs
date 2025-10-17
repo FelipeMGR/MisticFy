@@ -1,12 +1,11 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using MisticFy.Models;
-using MisticFy.Services;
-using MisticFy.src.DTO;
-using MisticFy.src.DTO.DTO;
+using MisticFy.API.src.DTO.SpotifyDTO;
+using MisticFy.API.src.Models;
+using MisticFy.API.src.Services.SpotifyServices;
 using SpotifyAPI.Web;
 
-namespace MisticFy.src.Repositories;
+namespace MisticFy.API.src.Repositories;
 
 public class PlaylistRepository(IMapper mapper, ISpotifyService spotifyService, IHttpContextAccessor httpContextAccessor) : IPlaylistRepository
 {

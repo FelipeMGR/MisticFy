@@ -1,6 +1,6 @@
-using MisticFy.src.DTO.DTOs;
+using MisticFy.API.src.DTO.SpotifyDTO;
 
-namespace MisticFy.Models;
+namespace MisticFy.API.src.Models;
 
 public class Playlist
 {

@@ -1,4 +1,4 @@
-namespace MisticFy.Models;
+namespace MisticFy.API.src.Models;
 
 public class Music
 {

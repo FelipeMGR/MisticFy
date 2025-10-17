@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MisticFy.Models;
-using MisticFy.src.DTO.DTO;
-using MisticFy.src.Repositories;
+using MisticFy.API.src.DTO.SpotifyDTO;
+using MisticFy.API.src.Models;
+using MisticFy.API.src.Repositories;
 
-namespace MisticFy.src.Controllers
+namespace MisticFy.API.src.Controllers
 {
     [Route("[controller]")]
     [ApiController]

@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using MisticFy.Context;
-using MisticFy.src.Models;
+using MisticFy.API.src.Context;
+using MisticFy.API.src.Models;
 
-namespace MisticFy.Services;
+namespace MisticFy.API.src.Services;
 
 public class UserService(AppDbContext db) : IUserService
 {

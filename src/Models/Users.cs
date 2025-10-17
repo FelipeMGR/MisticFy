@@ -1,7 +1,6 @@
-using MisticFy.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace MisticFy.src.Models;
+namespace MisticFy.API.src.Models;
 
 public class Users
 {

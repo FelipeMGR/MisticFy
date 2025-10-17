@@ -1,9 +1,7 @@
-﻿using MisticFy.src.DTO.DTO;
-using MisticFy.src.DTO.DTOs;
-using MisticFy.src.DTO.SearchMap;
+﻿using MisticFy.API.src.DTO.SearchMap;
 using SpotifyAPI.Web;
 
-namespace MisticFy.src.Repositories
+namespace MisticFy.API.src.Repositories
 {
     public interface ISearchRepository
     {

@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MisticFy.src.DTO.SearchMap;
-using MisticFy.src.Repositories;
+using MisticFy.API.src.DTO.SearchMap;
+using MisticFy.API.src.Repositories;
 using SpotifyAPI.Web;
 
-namespace MisticFy.src.Controllers
+namespace MisticFy.API.src.Controllers
 {
     [Route("[controller]")]
     [ApiController]

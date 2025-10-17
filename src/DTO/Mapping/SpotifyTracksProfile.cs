@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using MisticFy.src.DTO.DTO;
-using MisticFy.src.DTO.DTOs;
-using MisticFy.src.DTO.Mapping;
+using MisticFy.API.src.DTO.Mapping;
+using MisticFy.API.src.DTO.SpotifyDTO;
 using SpotifyAPI.Web;
 
 public class SpotifyTracksProfile : Profile

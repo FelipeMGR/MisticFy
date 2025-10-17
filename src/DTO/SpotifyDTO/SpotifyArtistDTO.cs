@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace MisticFy.src.DTO.DTO;
+namespace MisticFy.API.src.DTO.SpotifyDTO;
 
 public class SpotifyArtistDTO
 {

@@ -1,8 +1,8 @@
-﻿using MisticFy.Services;
-using MisticFy.src.DTO.SearchMap;
+﻿using MisticFy.API.src.DTO.SearchMap;
+using MisticFy.API.src.Services.SpotifyServices;
 using SpotifyAPI.Web;
 
-namespace MisticFy.src.Repositories
+namespace MisticFy.API.src.Repositories
 {
     public class SearchRepository(IHttpContextAccessor httpContext, ISpotifyService spotifyService) : ISearchRepository
     {

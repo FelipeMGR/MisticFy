@@ -1,12 +1,12 @@
 using Microsoft.IdentityModel.Tokens;
-using MisticFy.Context;
-using MisticFy.src.Models;
-using MisticFy.src.Services;
+using MisticFy.API.src.Context;
+using MisticFy.API.src.Models;
+using MisticFy.API.src.Services.TokenServices;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace MisticFy.src.Middleware;
+namespace MisticFy.API.src.Middleware;
 
 public class SpotifyAuthMiddleware(RequestDelegate next, IConfiguration configuration)
 {
