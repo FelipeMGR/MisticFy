@@ -1,9 +1,68 @@
-appsettings.Development.json
-appsettings.Development.json
-bin/Debug/net8.0/appsettings.Development.json
-bin/Debug/net8.0/appsettings.json
-bin/Debug/net8.0/appsettings.Development.json
-bin/Debug/net8.0/MisticFy.pdb
-obj/Debug/net8.0/MisticFy.pdb
-obj/Debug/net8.0/appsettings.Development.json
-appsettings.json
+﻿################################################################################
+# Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
+################################################################################
+
+/MisticFy/package-lock.json
+/MisticFy/openapi.json
+/MisticFy/MisticFy.http
+/MisticFy/.editorconfig
+/MisticFy/src/Properties/launchSettings.json
+/MisticFy/src/Properties/serviceDependencies.json
+/MisticFy/src/Properties/ServiceDependencies/MisticFy - Zip Deploy/apis1.arm.json
+/MisticFy/src/Properties/ServiceDependencies/MisticFy - Zip Deploy/profile.arm.json
+/MisticFy/src/Properties/PublishProfiles/MisticFy - Zip Deploy.pubxml
+/MisticFy/src/Docs/en/Diagrams/Diagrama MisticFy.png
+/MisticFy/Properties/launchSettings.json
+/MisticFy/Properties/serviceDependencies.json
+/MisticFy/Properties/PublishProfiles/MisticFy - Zip Deploy.pubxml
+/MisticFy/Properties/ServiceDependencies/MisticFy - Zip Deploy/apis1.arm.json
+/MisticFy/Properties/ServiceDependencies/MisticFy - Zip Deploy/profile.arm.json
+/MisticFy.Application/obj
+/MisticFy.Communication/obj
+/MisticFy.Domain/bin/Release/net8.0
+/MisticFy.Domain/obj/Debug/net8.0
+/MisticFy.Domain/obj
+/MisticFy.Infrastructure/bin/Release/net8.0
+/MisticFy.Infrastructure/obj/Debug/net8.0
+/MisticFy.Infrastructure/obj/Release/net8.0
+/Misticy.Exceptions/bin/Release/net8.0
+/MisticFy.Infrastructure/obj
+/Misticy.Exceptions/obj
+/MisticFy.Communication/bin/Release/net8.0
+/MisticFy.Application/bin/Release/net8.0
+/MisticFy/bin
+/MisticFy/.config
+/MisticFy/.vscode
+/.vs/Projetos/v17
+/.vs/MisticFy/copilot-chat/d9305d80/sessions/c602c6b4-6d10-4b5e-a391-d8f0008710b3
+/.vs/MisticFy/CopilotIndices/17.13.444.19527/CodeChunks.db
+/.vs/MisticFy/CopilotIndices/17.13.444.19527/SemanticSymbols.db
+*.db
+/.vs/MisticFy/DesignTimeBuild/.dtbcache.v2
+/.vs/MisticFy/FileContentIndex/00d87d56-c74e-4f8c-8494-d17ddace0eac.vsidx
+/.vs/MisticFy/FileContentIndex/13d14f2b-1558-43d0-9a49-82c33e372be0.vsidx
+/.vs/MisticFy/FileContentIndex/342292af-fb93-4c94-8682-4932a511c3cc.vsidx
+/.vs/MisticFy/FileContentIndex/39468953-c31b-45b0-9dc6-53f64d874ebe.vsidx
+/.vs/MisticFy/FileContentIndex/628c0687-a5cc-4c99-947e-570619f12ac0.vsidx
+/.vs/MisticFy/FileContentIndex/90b18c53-edec-4f0e-a814-ee4c7811f929.vsidx
+/.vs/MisticFy/FileContentIndex/a10e07f2-62fe-4fb7-8f2e-cc36cdbf8c6e.vsidx
+/.vs/MisticFy/FileContentIndex/b4ff6897-23d3-4c1e-a1ec-9cea8aa3b099.vsidx
+/.vs/MisticFy/FileContentIndex/cd736adb-f7e6-4d76-82b3-597c2624e4d6.vsidx
+/.vs/MisticFy/FileContentIndex/e7626209-204c-45c8-b2c5-583da4da299c.vsidx
+/.vs/ProjectEvaluation/misticfy.metadata.v9.bin
+/.vs/ProjectEvaluation/misticfy.projects.v9.bin
+/.vs/ProjectEvaluation/misticfy.strings.v9.bin
+/.vs/MisticFy/v17/ResourceExplorer
+/.vs/MisticFy/v17/.futdcache.v2
+/.vs/MisticFy/v17/.suo
+/.vs/MisticFy/v17/.wsuo
+/.vs/MisticFy/v17/DocumentLayout.backup.json
+/.vs/MisticFy/v17/DocumentLayout.json
+/.vs/MisticFy/v17/workspaceFileList.bin
+/.vs/slnx.sqlite
+/.vscode/launch.json
+/.vscode/settings.json
+/MisticFy/.github/workflows
+/MisticFy/obj
+/MisticFy/Properties
+/Properties/launchSettings.json

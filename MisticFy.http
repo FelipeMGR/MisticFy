@@ -1,6 +1,0 @@
-@MisticFy_HostAddress = http://localhost:5092
-
-GET {{MisticFy_HostAddress}}
-Accept: application/json
-
-###
